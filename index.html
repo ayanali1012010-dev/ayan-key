@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYAN - GET FREE KEY</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 16px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #page-key {
+            display: none;
+            animation: slideIn 0.3s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .title {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 4px;
+        }
+        .title span {
+            color: #00e5ff;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+        }
+        .subtitle {
+            font-size: 11px;
+            color: #555c68;
+            letter-spacing: 2px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .card {
+            background: #12141a;
+            border: 1px solid #1f232d;
+            border-radius: 12px;
+            width: 100%;
+            padding: 22px 18px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        }
+        .card-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #4b5362;
+            text-align: center;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+        .duration-btn {
+            flex: 1;
+            padding: 14px 10px;
+            border-radius: 8px;
+            border: 1px solid #00e5ff;
+            background: rgba(0, 229, 255, 0.04);
+            color: #00e5ff;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .duration-btn:active {
+            background: #00e5ff;
+            color: #000;
+            transform: scale(0.97);
+        }
+        .sub-hint {
+            font-size: 11px;
+            color: #555c68;
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.4;
+        }
+
+        .key-box-large {
+            background: #171a22;
+            border: 1px dashed #00e5ff;
+            border-radius: 10px;
+            padding: 20px 14px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .key-code {
+            font-size: 20px;
+            color: #00e5ff;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            word-break: break-all;
+            text-shadow: 0 0 12px rgba(0, 229, 255, 0.5);
+        }
+        .btn-action {
+            width: 100%;
+            padding: 14px;
+            background: #00e5ff;
+            border: none;
+            color: #000;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: 0.2s;
+        }
+        .btn-action:active {
+            opacity: 0.85;
+            transform: scale(0.98);
+        }
+        .btn-secondary {
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid #1f232d;
+            color: #727a8a;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .rules-card {
+            background: #0f1116;
+            border: 1px solid #1a1e27;
+            border-radius: 12px;
+            width: 100%;
+            padding: 18px 16px;
+        }
+        .rules-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #4b5362;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .rules-list {
+            list-style: none;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #727a8a;
+        }
+        .rules-list li::before {
+            content: "• ";
+            color: #00e5ff;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #3f4654;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SCREEN 1: DURATION SELECTION (Home Page) -->
+    <div id="page-home" class="page">
+        <div class="header">
+            <div class="title">AYAN <span>KEY</span></div>
+            <div class="subtitle">FREE KEY — 3H OR 6H SESSION</div>
+        </div>
+
+        <div class="card">
+            <div class="card-label">CHOOSE YOUR SESSION DURATION</div>
+            <div class="btn-group">
+                <button class="duration-btn" onclick="goToShrtFly(3)">3 HOURS</button>
+                <button class="duration-btn" onclick="goToShrtFly(6)">6 HOURS</button>
+            </div>
+            <div class="sub-hint">Complete short task to unlock instant key.</div>
+        </div>
+
+        <div class="rules-card">
+            <div class="rules-title">RULES</div>
+            <ul class="rules-list">
+                <li>Key is valid for <b>3 hours</b> or <b>6 hours</b> per session.</li>
+                <li>Complete the mission to reveal your secret code.</li>
+                <li>1 key = 1 device — cannot be used on another device.</li>
+                <li>While a key is active, you cannot generate a new one.</li>
+            </ul>
+        </div>
+
+        <div class="footer">t.me/ayanofficial</div>
+    </div>
+
+    <!-- SCREEN 2: DIRECT KEY DISPLAY (Shrtfly se aane ke baad yahi dikhega) -->
+    <div id="page-key" class="page">
+        <div class="header">
+            <div class="title">ACCESS <span>GRANTED</span></div>
+            <div class="subtitle">TASK COMPLETED — COPY YOUR CODE</div>
+        </div>
+
+        <div class="card">
+            <div class="key-box-large">
+                <div style="font-size: 10px; letter-spacing: 1.5px; color: #7d8594;">YOUR ACCESS KEY</div>
+                <div id="displayKey" class="key-code">GENERATING...</div>
+                <div id="validityInfo" style="font-size: 11px; color: #8e95a5;"></div>
+            </div>
+
+            <button class="btn-action" onclick="copyKey()">COPY KEY</button>
+            <button class="btn-secondary" onclick="window.location.href = window.location.pathname;">← GENERATE NEW KEY</button>
+        </div>
+
+        <div class="footer">t.me/ayanofficial</div>
+    </div>
+
+    <script>
+        const DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/keys/";
+
+        // ==========================================
+        // Yahan apne ShrtFly ke 2 Links paste karein:
+        // ==========================================
+        const SHRTFLY_URL_3H = "https://example.com/shrtfly-3h-link";
+        const SHRTFLY_URL_6H = "https://example.com/shrtfly-6h-link";
+
+        // Step 1: User jab 3H ya 6H dabayega toh Shrtfly par jayega
+        function goToShrtFly(hours) {
+            const targetUrl = (hours === 3) ? SHRTFLY_URL_3H : SHRTFLY_URL_6H;
+            window.location.href = targetUrl;
+        }
+
+        // Step 2: Auto-Detection (ShrtFly se Get Link dabakar wapas aane par)
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const claim = params.get('claim');
+
+            if (claim === '3h') {
+                showKeyScreen(3);
+            } else if (claim === '6h') {
+                showKeyScreen(6);
+            }
+        };
+
+        function showKeyScreen(hours) {
+            // Home page chupao aur seedha Key page dikhao
+            document.getElementById("page-home").style.display = "none";
+            document.getElementById("page-key").style.display = "flex";
+
+            // Nayi Key generate karo
+            const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
+            const generatedKey = "AYAN-" + randomCode + "-" + hours + "H";
+            const now = new Date().getTime();
+            const expireTime = now + (hours * 60 * 60 * 1000);
+
+            // Firebase me save karo
+            fetch(DB_URL + generatedKey + ".json", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    expires_at: expireTime,
+                    duration: hours + " Hours",
+                    created_at: now
+                })
+            })
+            .then(res => res.json())
+            .then(() => {
+                document.getElementById("displayKey").innerText = generatedKey;
+                document.getElementById("validityInfo").innerText = "Valid for " + hours + " Hours";
+            })
+            .catch(err => {
+                document.getElementById("displayKey").innerText = generatedKey;
+                document.getElementById("validityInfo").innerText = "Ready to use (" + hours + "H)";
+            });
+        }
+
+        function copyKey() {
+            const key = document.getElementById("displayKey").innerText;
+            navigator.clipboard.writeText(key).then(() => {
+                alert("Key copied to clipboard!");
+            });
+        }
+    </script>
+
+</body>
+</html>
