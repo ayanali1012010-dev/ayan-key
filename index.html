@@ -194,7 +194,7 @@
 </head>
 <body>
 
-    <!-- SCREEN 1: DURATION SELECTION (Home Page) -->
+    <!-- SCREEN 1: DURATION SELECTION -->
     <div id="page-home" class="page">
         <div class="header">
             <div class="title">AYAN <span>KEY</span></div>
@@ -223,7 +223,7 @@
         <div class="footer">t.me/ayanofficial</div>
     </div>
 
-    <!-- SCREEN 2: DIRECT KEY DISPLAY (Shrtfly se aane ke baad yahi dikhega) -->
+    <!-- SCREEN 2: KEY DISPLAY SCREEN -->
     <div id="page-key" class="page">
         <div class="header">
             <div class="title">ACCESS <span>GRANTED</span></div>
@@ -247,19 +247,15 @@
     <script>
         const DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/keys/";
 
-        // ==========================================
-        // Yahan apne ShrtFly ke 2 Links paste karein:
-        // ==========================================
-        const SHRTFLY_URL_3H = "https://example.com/shrtfly-3h-link";
-        const SHRTFLY_URL_6H = "https://example.com/shrtfly-6h-link";
+        // Integrated ShrtFly Links
+        const SHRTFLY_URL_3H = "https://shrtslug.biz/96pWc";
+        const SHRTFLY_URL_6H = "https://shrtslug.biz/96pWk";
 
-        // Step 1: User jab 3H ya 6H dabayega toh Shrtfly par jayega
         function goToShrtFly(hours) {
             const targetUrl = (hours === 3) ? SHRTFLY_URL_3H : SHRTFLY_URL_6H;
             window.location.href = targetUrl;
         }
 
-        // Step 2: Auto-Detection (ShrtFly se Get Link dabakar wapas aane par)
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const claim = params.get('claim');
@@ -272,17 +268,14 @@
         };
 
         function showKeyScreen(hours) {
-            // Home page chupao aur seedha Key page dikhao
             document.getElementById("page-home").style.display = "none";
             document.getElementById("page-key").style.display = "flex";
 
-            // Nayi Key generate karo
             const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
             const generatedKey = "AYAN-" + randomCode + "-" + hours + "H";
             const now = new Date().getTime();
             const expireTime = now + (hours * 60 * 60 * 1000);
 
-            // Firebase me save karo
             fetch(DB_URL + generatedKey + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
