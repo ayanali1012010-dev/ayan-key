@@ -32,47 +32,6 @@
             flex-direction: column;
         }
 
-        /* HARD ANTI-ADBLOCK OVERLAY */
-        #adblock-notice {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #0d1117;
-            z-index: 99999999999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 24px;
-        }
-        #adblock-notice h2 {
-            color: #f85149;
-            font-size: 24px;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-        #adblock-notice p {
-            color: #c9d1d9;
-            font-size: 14px;
-            max-width: 400px;
-            line-height: 1.6;
-            margin-bottom: 22px;
-        }
-        .btn-reload {
-            background: #238636;
-            color: #ffffff;
-            padding: 14px 28px;
-            border-radius: 8px;
-            border: none;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
-
         /* MANDATORY AD OVERLAY */
         #adOverlay {
             position: fixed;
@@ -325,7 +284,7 @@
             transform: translateY(-2px);
         }
 
-        /* DURATION SELECTION UI (STEP 0) */
+        /* DURATION SELECTION */
         .btn-duration-group {
             display: flex;
             gap: 15px;
@@ -350,7 +309,7 @@
             color: #ffffff;
         }
 
-        /* KEY DISPLAY UI */
+        /* KEY DISPLAY */
         .key-box-large {
             background: #0d1117;
             border: 1px dashed #58a6ff;
@@ -381,24 +340,17 @@
 </head>
 <body>
 
-    <!-- ADBLOCK DETECTED OVERLAY -->
-    <div id="adblock-notice">
-        <h2>⚠️ ADBLOCKER DETECTED!</h2>
-        <p>Brave Shields / AdBlocker चालू है!<br><br>कृपया ऊपर URL बार में 🦁 <b>Brave Shields</b> या अपना <b>AdBlocker बंद करें</b> और पेज रीलोड करें।</p>
-        <button class="btn-reload" onclick="window.location.reload()">I DISABLED ADBLOCK (RELOAD)</button>
-    </div>
-
     <!-- MANDATORY 15s AD OVERLAY -->
     <div id="adOverlay">
         <div class="overlay-card">
             <div id="overlayStepText" class="overlay-title">SPONSORED VERIFICATION</div>
-            <div id="overlayTimerText" class="overlay-timer">Please view ad to unlock content (15s)</div>
+            <div id="overlayTimerText" class="overlay-timer">Please view ad to unlock content (12s)</div>
             
             <div class="overlay-ad-box">
                 <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c"></iframe>
             </div>
 
-            <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (15s)...</button>
+            <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (12s)...</button>
         </div>
     </div>
 
@@ -457,7 +409,7 @@
             </div>
 
             <!-- 1. AD BANNER 300x250 -->
-            <div class="ad-banner-slot banner-verify">
+            <div class="ad-banner-slot">
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -605,34 +557,6 @@
         let currentStep = 1;
         let selectedDuration = "3h";
         let totalSteps = 4;
-        let isAdBlockDetected = false;
-
-        function triggerAdblockNotice() {
-            if (isAdBlockDetected) return;
-            isAdBlockDetected = true;
-            document.getElementById('adblock-notice').style.display = 'flex';
-            const overlay = document.getElementById("adOverlay");
-            if (overlay) overlay.style.display = "none";
-            const main = document.getElementById("mainContainer");
-            if (main) main.style.display = "none";
-            if (window.overlayInterval) clearInterval(window.overlayInterval);
-            if (window.countdownInterval) clearInterval(window.countdownInterval);
-        }
-
-        fetch('https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js', { mode: 'no-cors' })
-            .catch(() => triggerAdblockNotice());
-
-        const testScript = document.createElement('script');
-        testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-        testScript.onerror = () => triggerAdblockNotice();
-        document.head.appendChild(testScript);
-
-        setTimeout(() => {
-            const banner = document.querySelector('.banner-verify');
-            if (banner && (banner.offsetHeight === 0 || banner.children.length === 0 || !banner.querySelector('iframe, img, a'))) {
-                triggerAdblockNotice();
-            }
-        }, 1800);
 
         function openAdDirect() {
             try { window.open(AD_DIRECT_LINK, '_blank'); } catch(e) {}
@@ -664,7 +588,6 @@
             unlockBtn.innerText = "PLEASE WAIT (" + adSeconds + "s)...";
 
             window.overlayInterval = setInterval(() => {
-                if (isAdBlockDetected) return;
                 adSeconds--;
                 if (adSeconds > 0) {
                     overlayTimer.innerText = "Please view ad to unlock content (" + adSeconds + "s)";
@@ -700,7 +623,6 @@
             timerDisplay.innerText = "⏳ VERIFYING SESSION: PLEASE WAIT (" + timerSeconds + "s)...";
 
             window.countdownInterval = setInterval(() => {
-                if (isAdBlockDetected) return;
                 timerSeconds--;
                 if (timerSeconds > 0) {
                     timerDisplay.innerText = "⏳ VERIFYING SESSION: PLEASE WAIT (" + timerSeconds + "s)...";
