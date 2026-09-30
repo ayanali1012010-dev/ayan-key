@@ -133,7 +133,7 @@
             margin-bottom: 16px;
         }
         .key-code {
-            font-size: 20px;
+            font-size: 19px;
             color: #00e5ff;
             font-weight: 800;
             letter-spacing: 2px;
@@ -155,7 +155,13 @@
             margin-bottom: 10px;
             transition: 0.2s;
         }
-        .btn-action:active {
+        .btn-action:disabled {
+            background: #252b36;
+            color: #555e70;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-action:active:not(:disabled) {
             opacity: 0.85;
             transform: scale(0.98);
         }
@@ -252,18 +258,23 @@
     <!-- SCREEN 2: KEY DISPLAY SCREEN -->
     <div id="page-key" class="page">
         <div class="header">
-            <div class="title">ACCESS <span>GRANTED</span></div>
-            <div class="subtitle">TASK COMPLETED — COPY YOUR CODE</div>
+            <div class="title">ACCESS <span>PORTAL</span></div>
+            <div class="subtitle">TASK COMPLETED — GENERATE YOUR KEY</div>
         </div>
 
         <div class="card">
             <div class="key-box-large">
                 <div style="font-size: 10px; letter-spacing: 1.5px; color: #7d8594;">YOUR ACCESS KEY</div>
-                <div id="displayKey" class="key-code">GENERATING...</div>
-                <div id="validityInfo" style="font-size: 11px; color: #8e95a5;"></div>
+                <div id="displayKey" class="key-code">READY TO GENERATE</div>
+                <div id="validityInfo" style="font-size: 11px; color: #8e95a5;">Click button below to start</div>
             </div>
 
-            <button class="btn-action" onclick="copyKey()">COPY KEY</button>
+            <!-- Start Generate Button -->
+            <button id="btnGenerate" class="btn-action" onclick="startGeneration()">⚡ GENERATE KEY</button>
+            
+            <!-- Copy Key Button (Hidden until countdown finishes) -->
+            <button id="btnCopy" class="btn-action" style="display:none;" onclick="copyKey()">📋 COPY KEY</button>
+
             <button class="btn-secondary" onclick="window.location.href = window.location.pathname;">← GENERATE NEW KEY</button>
         </div>
     </div>
@@ -290,6 +301,8 @@
         const SHRTFLY_URL_3H = "https://shrtslug.biz/96pWc";
         const SHRTFLY_URL_6H = "https://shrtslug.biz/96pWk";
 
+        let selectedHours = 3;
+
         function goToShrtFly(hours) {
             const targetUrl = (hours === 3) ? SHRTFLY_URL_3H : SHRTFLY_URL_6H;
             window.location.href = targetUrl;
@@ -300,39 +313,70 @@
             const claim = params.get('claim');
 
             if (claim === '3h') {
-                showKeyScreen(3);
+                selectedHours = 3;
+                showKeyScreen();
             } else if (claim === '6h') {
-                showKeyScreen(6);
+                selectedHours = 6;
+                showKeyScreen();
             }
         };
 
-        function showKeyScreen(hours) {
+        function showKeyScreen() {
             document.getElementById("page-home").style.display = "none";
             document.getElementById("page-key").style.display = "flex";
+            document.getElementById("validityInfo").innerText = "Session selected: " + selectedHours + " Hours";
+        }
 
+        function startGeneration() {
+            const btnGenerate = document.getElementById("btnGenerate");
+            btnGenerate.disabled = true;
+
+            let timeLeft = 15;
+            document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
+            document.getElementById("validityInfo").innerText = "Generating your secure key...";
+
+            const timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
+                    btnGenerate.innerText = "⏳ PLEASE WAIT (" + timeLeft + "s)";
+                } else {
+                    clearInterval(timer);
+                    finalizeKey();
+                }
+            }, 1000);
+        }
+
+        function finalizeKey() {
             const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            const generatedKey = "AYAN-" + randomCode + "-" + hours + "H";
+            const generatedKey = "AYAN-" + randomCode + "-" + selectedHours + "H";
             const now = new Date().getTime();
-            const expireTime = now + (hours * 60 * 60 * 1000);
+            const expireTime = now + (selectedHours * 60 * 60 * 1000);
 
             fetch(DB_URL + generatedKey + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     expires_at: expireTime,
-                    duration: hours + " Hours",
+                    duration: selectedHours + " Hours",
                     created_at: now
                 })
             })
             .then(res => res.json())
             .then(() => {
-                document.getElementById("displayKey").innerText = generatedKey;
-                document.getElementById("validityInfo").innerText = "Valid for " + hours + " Hours";
+                showFinalKey(generatedKey);
             })
             .catch(err => {
-                document.getElementById("displayKey").innerText = generatedKey;
-                document.getElementById("validityInfo").innerText = "Ready to use (" + hours + "H)";
+                showFinalKey(generatedKey);
             });
+        }
+
+        function showFinalKey(key) {
+            document.getElementById("displayKey").innerText = key;
+            document.getElementById("validityInfo").innerText = "Valid for " + selectedHours + " Hours";
+
+            document.getElementById("btnGenerate").style.display = "none";
+            document.getElementById("btnCopy").style.display = "block";
         }
 
         function copyKey() {
