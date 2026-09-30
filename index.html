@@ -238,8 +238,8 @@
         <div class="card">
             <div class="card-label">CHOOSE YOUR SESSION DURATION</div>
             <div class="btn-group">
-                <button class="duration-btn" onclick="goToShrtFly(3)">3 HOURS</button>
-                <button class="duration-btn" onclick="goToShrtFly(6)">6 HOURS</button>
+                <button class="duration-btn" onclick="startVerificationFlow(3)">3 HOURS</button>
+                <button class="duration-btn" onclick="startVerificationFlow(6)">6 HOURS</button>
             </div>
             <div class="sub-hint">Complete short task to unlock instant key.</div>
         </div>
@@ -250,7 +250,7 @@
                 <li>Key is valid for <b>3 hours</b> or <b>6 hours</b> per session.</li>
                 <li>Complete the mission to reveal your secret code.</li>
                 <li>1 key = 1 device — cannot be used on another device.</li>
-                <li>While a key is active, you cannot generate a new one.</li>
+                <li>URL shortcuts and link reuse are strictly blocked.</li>
             </ul>
         </div>
     </div>
@@ -269,10 +269,10 @@
                 <div id="validityInfo" style="font-size: 11px; color: #8e95a5;">Click button below to start</div>
             </div>
 
-            <!-- Start Generate Button -->
+            <!-- 15s Timer Button -->
             <button id="btnGenerate" class="btn-action" onclick="startGeneration()">⚡ GENERATE KEY</button>
             
-            <!-- Copy Key Button (Hidden until countdown finishes) -->
+            <!-- Copy Button -->
             <button id="btnCopy" class="btn-action" style="display:none;" onclick="copyKey()">📋 COPY KEY</button>
 
             <button class="btn-secondary" onclick="window.location.href = window.location.pathname;">← GENERATE NEW KEY</button>
@@ -298,26 +298,56 @@
     <script>
         const DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/keys/";
 
-        const SHRTFLY_URL_3H = "https://shrtslug.biz/96pWc";
-        const SHRTFLY_URL_6H = "https://shrtslug.biz/96pWk";
-
         let selectedHours = 3;
 
-        function goToShrtFly(hours) {
-            const targetUrl = (hours === 3) ? SHRTFLY_URL_3H : SHRTFLY_URL_6H;
-            window.location.href = targetUrl;
+        // जब यूज़र 3 HOURS या 6 HOURS पर क्लिक करे:
+        function startVerificationFlow(hours) {
+            const claimType = (hours === 3) ? '3h' : '6h';
+            // सीधे आपकी 4-Step Verification साइट पर भेजेगा
+            window.location.href = "https://ayanali1012010-dev.github.io/Add/?step=1&claim=" + claimType;
         }
 
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const claim = params.get('claim');
+            const token = params.get('token');
 
-            if (claim === '3h') {
-                selectedHours = 3;
-                showKeyScreen();
-            } else if (claim === '6h') {
-                selectedHours = 6;
-                showKeyScreen();
+            if (claim) {
+                // 1. One-time security check (Used Token Check)
+                const usedTokens = JSON.parse(sessionStorage.getItem('used_tokens') || '[]');
+                if (token && usedTokens.includes(token)) {
+                    alert("This link has already been used! Please complete the task from start.");
+                    window.location.replace(window.location.pathname);
+                    return;
+                }
+
+                // 2. Token expiry check (2 मिनट बाद लिंक एक्सपायर)
+                if (token) {
+                    const tokenTime = parseInt(token);
+                    const now = Date.now();
+                    if (!isNaN(tokenTime) && (now - tokenTime > 120000)) {
+                        alert("Session expired! Please restart the verification.");
+                        window.location.replace(window.location.pathname);
+                        return;
+                    }
+                }
+
+                // 3. टोकन को यूज्ड मार्क करें
+                if (token) {
+                    usedTokens.push(token);
+                    sessionStorage.setItem('used_tokens', JSON.stringify(usedTokens));
+                }
+
+                // 4. URL को एड्रेस बार से तुरंत क्लीन करें
+                window.history.replaceState({}, document.title, window.location.pathname);
+
+                if (claim === '3h') {
+                    selectedHours = 3;
+                    showKeyScreen();
+                } else if (claim === '6h') {
+                    selectedHours = 6;
+                    showKeyScreen();
+                }
             }
         };
 
@@ -331,7 +361,7 @@
             const btnGenerate = document.getElementById("btnGenerate");
             btnGenerate.disabled = true;
 
-            let timeLeft = 15;
+            let timeLeft = 15; // 15 सेकंड का वेट टाइमर
             document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
             document.getElementById("validityInfo").innerText = "Generating your secure key...";
 
