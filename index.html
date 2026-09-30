@@ -339,7 +339,7 @@
     <div class="footer">t.me/ayanofficial</div>
 
     <script>
-        const DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/keys/";
+        const BASE_DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/";
         let selectedHours = 3;
         let isAdBlockDetected = false;
 
@@ -441,26 +441,40 @@
 
         function finalizeKey() {
             const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            const generatedKey = "AYAN-" + randomCode + "-" + selectedHours + "H";
+            
+            // ऐप कोड के अनुसार अंत में :3H या :6H होना अनिवार्य है
+            const generatedKey = "AYAN-" + randomCode + ":" + selectedHours + "H";
             const now = new Date().getTime();
             const expireTime = now + (selectedHours * 60 * 60 * 1000);
 
-            fetch(DB_URL + generatedKey + ".json", {
+            const payload = {
+                expires_at: expireTime,
+                duration: selectedHours + " Hours",
+                created_at: now,
+                status: "active"
+            };
+
+            // Firebase में root और /key दोनों नोड्स पर सेव करना ताकि ऐप सीधे वैलिडेट कर सके
+            const saveToKeyNode = fetch(BASE_DB_URL + "key/" + encodeURIComponent(generatedKey) + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    expires_at: expireTime,
-                    duration: selectedHours + " Hours",
-                    created_at: now
-                })
-            })
-            .then(res => res.json())
-            .then(() => {
-                showFinalKey(generatedKey);
-            })
-            .catch(err => {
-                showFinalKey(generatedKey);
+                body: JSON.stringify(payload)
             });
+
+            const saveToRootNode = fetch(BASE_DB_URL + encodeURIComponent(generatedKey) + ".json", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+
+            Promise.all([saveToKeyNode, saveToRootNode])
+                .then(() => {
+                    showFinalKey(generatedKey);
+                })
+                .catch((err) => {
+                    console.error("Firebase sync error: ", err);
+                    showFinalKey(generatedKey);
+                });
         }
 
         function showFinalKey(key) {
