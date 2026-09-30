@@ -30,8 +30,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(11, 12, 16, 0.99);
-            z-index: 9999999999;
+            background: #0b0c10;
+            z-index: 99999999999;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -257,12 +257,12 @@
     <!-- ADBLOCK DETECTED OVERLAY -->
     <div id="adblock-notice">
         <h2>⚠️ ADBLOCKER DETECTED!</h2>
-        <p>Brave Shields / AdBlocker चालू है! <br><br>कृपया ऊपर URL बार में 🦁 <b>Brave Shields</b> या अपना <b>AdBlocker बंद करें</b> और पेज को रीलोड करें।</p>
+        <p>Brave Shields / AdBlocker चालू है!<br><br>कृपया ऊपर URL बार में 🦁 <b>Brave Shields</b> या अपना <b>AdBlocker बंद करें</b> और पेज रीलोड करें।</p>
         <button class="btn-reload" onclick="window.location.reload()">I DISABLED ADBLOCK (RELOAD)</button>
     </div>
 
     <!-- TOP ADSTERRA BANNER -->
-    <div class="ad-box">
+    <div class="ad-box banner-verify">
         <script type="text/javascript">
           atOptions = {
             'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -316,12 +316,8 @@
                 <div id="validityInfo" style="font-size: 11px; color: #8e95a5;">Click button below to start</div>
             </div>
 
-            <!-- 15s Timer Button -->
             <button id="btnGenerate" class="btn-action" onclick="startGeneration()">⚡ GENERATE KEY</button>
-            
-            <!-- Copy Button -->
             <button id="btnCopy" class="btn-action" style="display:none;" onclick="copyKey()">📋 COPY KEY</button>
-
             <button class="btn-secondary" onclick="window.location.href = window.location.pathname;">← GENERATE NEW KEY</button>
         </div>
     </div>
@@ -344,40 +340,37 @@
 
     <script>
         const DB_URL = "https://vpna-559f-default-rtdb.firebaseio.com/keys/";
-
         let selectedHours = 3;
+        let isAdBlockDetected = false;
 
-        // SUPER BRAVE/ADBLOCK DETECTOR
+        // STRICT AD-SHIELD KILLER
         function triggerAdblockNotice() {
+            if (isAdBlockDetected) return;
+            isAdBlockDetected = true;
             document.getElementById('adblock-notice').style.display = 'flex';
+            const pHome = document.getElementById("page-home");
+            if (pHome) pHome.style.display = "none";
+            const pKey = document.getElementById("page-key");
+            if (pKey) pKey.style.display = "none";
         }
 
-        async function detectAdBlocker() {
-            try {
-                const testUrl = new Request('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', {
-                    method: 'HEAD',
-                    mode: 'no-cors'
-                });
-                await fetch(testUrl);
-            } catch (error) {
+        // Test 1: Network probe
+        fetch('https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js', { mode: 'no-cors' })
+            .catch(() => triggerAdblockNotice());
+
+        // Test 2: External Script probe
+        const testScript = document.createElement('script');
+        testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+        testScript.onerror = () => triggerAdblockNotice();
+        document.head.appendChild(testScript);
+
+        // Test 3: DOM verify
+        setTimeout(() => {
+            const banner = document.querySelector('.banner-verify');
+            if (banner && (banner.offsetHeight === 0 || banner.children.length === 0 || !banner.querySelector('iframe, img, a'))) {
                 triggerAdblockNotice();
-                return;
             }
-
-            let bait = document.createElement('div');
-            bait.className = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links';
-            bait.style.cssText = 'width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;';
-            document.body.appendChild(bait);
-
-            setTimeout(() => {
-                if (bait.offsetHeight === 0 || bait.clientHeight === 0 || bait.style.display === 'none') {
-                    triggerAdblockNotice();
-                }
-                bait.remove();
-            }, 300);
-        }
-
-        window.addEventListener('DOMContentLoaded', detectAdBlocker);
+        }, 1800);
 
         function startVerificationFlow(hours) {
             const claimType = (hours === 6) ? '6h' : '3h';
