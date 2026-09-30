@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AYAN - GET FREE KEY</title>
+
+    <!-- ADSTERRA POPUNDER / SOCIAL BAR SCRIPTS -->
+    <script src="https://pl31582757.profitableratecpmnetwork.com/1f/89/9d/1f899d04f76fc54f606dd14d7b408935.js"></script>
+    <script src="https://pl31582759.profitableratecpmnetwork.com/fd/24/c2/fd24c234964cf2b1a3347ce11c03cd83.js"></script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -20,47 +25,6 @@
             justify-content: center;
             min-height: 100vh;
             padding: 16px;
-        }
-
-        /* HARD ANTI-ADBLOCK OVERLAY */
-        #adblock-notice {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #0b0c10;
-            z-index: 99999999999;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 24px;
-        }
-        #adblock-notice h2 {
-            color: #f85149;
-            font-size: 24px;
-            margin-bottom: 12px;
-            font-weight: 800;
-        }
-        #adblock-notice p {
-            color: #c5c6c7;
-            font-size: 14px;
-            max-width: 400px;
-            line-height: 1.6;
-            margin-bottom: 22px;
-        }
-        .btn-reload {
-            background: #00e5ff;
-            color: #000;
-            padding: 14px 28px;
-            border-radius: 8px;
-            border: none;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            cursor: pointer;
         }
 
         .page {
@@ -105,8 +69,8 @@
 
         .ad-box {
             width: 100%;
-            max-width: 300px;
-            min-height: 250px;
+            max-width: 320px;
+            min-height: 100px;
             margin: 14px 0;
             display: flex;
             justify-content: center;
@@ -254,15 +218,8 @@
 </head>
 <body>
 
-    <!-- ADBLOCK DETECTED OVERLAY -->
-    <div id="adblock-notice">
-        <h2>⚠️ ADBLOCKER DETECTED!</h2>
-        <p>Brave Shields / AdBlocker चालू है!<br><br>कृपया ऊपर URL बार में 🦁 <b>Brave Shields</b> या अपना <b>AdBlocker बंद करें</b> और पेज रीलोड करें।</p>
-        <button class="btn-reload" onclick="window.location.reload()">I DISABLED ADBLOCK (RELOAD)</button>
-    </div>
-
-    <!-- TOP ADSTERRA BANNER -->
-    <div class="ad-box banner-verify">
+    <!-- TOP BANNER AD (300x250) -->
+    <div class="ad-box">
         <script type="text/javascript">
           atOptions = {
             'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -289,6 +246,12 @@
                 <button class="duration-btn" onclick="startVerificationFlow(6)">6 HOURS</button>
             </div>
             <div class="sub-hint">Complete short task to unlock instant key.</div>
+        </div>
+
+        <!-- NATIVE CPM BANNER (MIDDLE AD) -->
+        <div class="ad-box">
+            <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
+            <div id="container-882389533e02c36e6957b2a986f7bd41"></div>
         </div>
 
         <div class="rules-card">
@@ -322,7 +285,7 @@
         </div>
     </div>
 
-    <!-- BOTTOM ADSTERRA BANNER -->
+    <!-- BOTTOM BANNER AD -->
     <div class="ad-box">
         <script type="text/javascript">
           atOptions = {
@@ -340,41 +303,21 @@
 
     <script>
         const BASE_DB_URL = "https://vpna-13387-default-rtdb.firebaseio.com/";
+        const DIRECT_LINK_URL = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c";
         let selectedHours = 3;
-        let isAdBlockDetected = false;
 
-        // STRICT AD-SHIELD KILLER
-        function triggerAdblockNotice() {
-            if (isAdBlockDetected) return;
-            isAdBlockDetected = true;
-            document.getElementById('adblock-notice').style.display = 'flex';
-            const pHome = document.getElementById("page-home");
-            if (pHome) pHome.style.display = "none";
-            const pKey = document.getElementById("page-key");
-            if (pKey) pKey.style.display = "none";
+        function openDirectLink() {
+            try {
+                window.open(DIRECT_LINK_URL, '_blank');
+            } catch(e) {}
         }
 
-        // Test 1: Network probe
-        fetch('https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js', { mode: 'no-cors' })
-            .catch(() => triggerAdblockNotice());
-
-        // Test 2: External Script probe
-        const testScript = document.createElement('script');
-        testScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-        testScript.onerror = () => triggerAdblockNotice();
-        document.head.appendChild(testScript);
-
-        // Test 3: DOM verify
-        setTimeout(() => {
-            const banner = document.querySelector('.banner-verify');
-            if (banner && (banner.offsetHeight === 0 || banner.children.length === 0 || !banner.querySelector('iframe, img, a'))) {
-                triggerAdblockNotice();
-            }
-        }, 1800);
-
         function startVerificationFlow(hours) {
+            openDirectLink();
             const claimType = (hours === 6) ? '6h' : '3h';
-            window.location.href = "https://ayanali1012010-dev.github.io/Add/?step=1&claim=" + claimType;
+            setTimeout(() => {
+                window.location.href = "https://ayanali1012010-dev.github.io/Add/?step=1&claim=" + claimType;
+            }, 600);
         }
 
         window.onload = function() {
@@ -420,6 +363,7 @@
         }
 
         function startGeneration() {
+            openDirectLink();
             const btnGenerate = document.getElementById("btnGenerate");
             btnGenerate.disabled = true;
 
@@ -441,8 +385,6 @@
 
         function finalizeKey() {
             const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            
-            // ऐप कोड के अनुसार अंत में :3H या :6H होना अनिवार्य है
             const generatedKey = "AYAN-" + randomCode + ":" + selectedHours + "H";
             const now = new Date().getTime();
             const expireTime = now + (selectedHours * 60 * 60 * 1000);
@@ -454,7 +396,6 @@
                 status: "active"
             };
 
-            // Firebase में root और /key दोनों नोड्स पर सेव करना ताकि ऐप सीधे वैलिडेट कर सके
             const saveToKeyNode = fetch(BASE_DB_URL + "key/" + encodeURIComponent(generatedKey) + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
