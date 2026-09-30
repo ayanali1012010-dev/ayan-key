@@ -62,7 +62,6 @@
             font-weight: 600;
         }
 
-        /* Ad Slot Styles */
         .ad-box {
             width: 100%;
             max-width: 300px;
@@ -216,7 +215,7 @@
 
     <!-- TOP ADSTERRA BANNER -->
     <div class="ad-box">
-        <script>
+        <script type="text/javascript">
           atOptions = {
             'key' : '51094004b5c27de1e2c4ed112a7e100b',
             'format' : 'iframe',
@@ -225,7 +224,7 @@
             'params' : {}
           };
         </script>
-        <script src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
+        <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
     </div>
 
     <!-- SCREEN 1: DURATION SELECTION -->
@@ -281,7 +280,7 @@
 
     <!-- BOTTOM ADSTERRA BANNER -->
     <div class="ad-box">
-        <script>
+        <script type="text/javascript">
           atOptions = {
             'key' : '51094004b5c27de1e2c4ed112a7e100b',
             'format' : 'iframe',
@@ -290,7 +289,7 @@
             'params' : {}
           };
         </script>
-        <script src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
+        <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
     </div>
 
     <div class="footer">t.me/ayanofficial</div>
@@ -300,10 +299,9 @@
 
         let selectedHours = 3;
 
-        // जब यूज़र 3 HOURS या 6 HOURS पर क्लिक करे:
+        // यही मुख्य फ़ंक्शन है जो 3h और 6h को अलग-अलग भेजता है
         function startVerificationFlow(hours) {
-            const claimType = (hours === 3) ? '3h' : '6h';
-            // सीधे आपकी 4-Step Verification साइट पर भेजेगा
+            const claimType = (hours === 6) ? '6h' : '3h';
             window.location.href = "https://ayanali1012010-dev.github.io/Add/?step=1&claim=" + claimType;
         }
 
@@ -313,7 +311,6 @@
             const token = params.get('token');
 
             if (claim) {
-                // 1. One-time security check (Used Token Check)
                 const usedTokens = JSON.parse(sessionStorage.getItem('used_tokens') || '[]');
                 if (token && usedTokens.includes(token)) {
                     alert("This link has already been used! Please complete the task from start.");
@@ -321,7 +318,6 @@
                     return;
                 }
 
-                // 2. Token expiry check (2 मिनट बाद लिंक एक्सपायर)
                 if (token) {
                     const tokenTime = parseInt(token);
                     const now = Date.now();
@@ -330,24 +326,19 @@
                         window.location.replace(window.location.pathname);
                         return;
                     }
-                }
-
-                // 3. टोकन को यूज्ड मार्क करें
-                if (token) {
                     usedTokens.push(token);
                     sessionStorage.setItem('used_tokens', JSON.stringify(usedTokens));
                 }
 
-                // 4. URL को एड्रेस बार से तुरंत क्लीन करें
+                // एड्रेस बार से टोकन क्लीन करना
                 window.history.replaceState({}, document.title, window.location.pathname);
 
-                if (claim === '3h') {
-                    selectedHours = 3;
-                    showKeyScreen();
-                } else if (claim === '6h') {
+                if (claim === '6h') {
                     selectedHours = 6;
-                    showKeyScreen();
+                } else {
+                    selectedHours = 3;
                 }
+                showKeyScreen();
             }
         };
 
@@ -361,9 +352,9 @@
             const btnGenerate = document.getElementById("btnGenerate");
             btnGenerate.disabled = true;
 
-            let timeLeft = 15; // 15 सेकंड का वेट टाइमर
+            let timeLeft = 15;
             document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
-            document.getElementById("validityInfo").innerText = "Generating your secure key...";
+            document.getElementById("validityInfo").innerText = "Generating your " + selectedHours + "H secure key...";
 
             const timer = setInterval(() => {
                 timeLeft--;
