@@ -22,6 +22,47 @@
             padding: 16px;
         }
 
+        /* ANTI-ADBLOCK OVERLAY */
+        #adblock-notice {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #0b0c10;
+            z-index: 999999999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+        #adblock-notice h2 {
+            color: #f85149;
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        #adblock-notice p {
+            color: #8b949e;
+            font-size: 14px;
+            max-width: 360px;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+        .btn-reload {
+            background: #00e5ff;
+            color: #000;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
         .page {
             width: 100%;
             max-width: 420px;
@@ -213,6 +254,13 @@
 </head>
 <body>
 
+    <!-- ADBLOCK DETECTED OVERLAY -->
+    <div id="adblock-notice">
+        <h2>⚠️ ADBLOCKER DETECTED!</h2>
+        <p>हमारे सर्वर का खर्च ऐड्स से चलता है। कृपया अपना <b>AdBlocker, Brave Shields या Private DNS</b> बंद करें और रीलोड करें।</p>
+        <button class="btn-reload" onclick="window.location.reload()">I DISABLED ADBLOCK (RELOAD)</button>
+    </div>
+
     <!-- TOP ADSTERRA BANNER -->
     <div class="ad-box">
         <script type="text/javascript">
@@ -299,7 +347,24 @@
 
         let selectedHours = 3;
 
-        // यही मुख्य फ़ंक्शन है जो 3h और 6h को अलग-अलग भेजता है
+        // Anti-AdBlock Detector
+        function checkAdBlock() {
+            let testAd = document.createElement('div');
+            testAd.innerHTML = '&nbsp;';
+            testAd.className = 'adsbox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads';
+            testAd.style.position = 'absolute';
+            testAd.style.left = '-9999px';
+            document.body.appendChild(testAd);
+
+            setTimeout(function() {
+                if (testAd.offsetHeight === 0 || testAd.style.display === 'none' || !testAd.parentNode) {
+                    document.getElementById('adblock-notice').style.display = 'flex';
+                }
+                testAd.remove();
+            }, 600);
+        }
+        window.addEventListener('load', checkAdBlock);
+
         function startVerificationFlow(hours) {
             const claimType = (hours === 6) ? '6h' : '3h';
             window.location.href = "https://ayanali1012010-dev.github.io/Add/?step=1&claim=" + claimType;
@@ -330,7 +395,6 @@
                     sessionStorage.setItem('used_tokens', JSON.stringify(usedTokens));
                 }
 
-                // एड्रेस बार से टोकन क्लीन करना
                 window.history.replaceState({}, document.title, window.location.pathname);
 
                 if (claim === '6h') {
