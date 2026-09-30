@@ -22,7 +22,7 @@
             padding: 16px;
         }
 
-        /* ANTI-ADBLOCK OVERLAY */
+        /* HARD ANTI-ADBLOCK OVERLAY */
         #adblock-notice {
             display: none;
             position: fixed;
@@ -30,8 +30,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #0b0c10;
-            z-index: 999999999;
+            background: rgba(11, 12, 16, 0.99);
+            z-index: 9999999999;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -45,9 +45,9 @@
             font-weight: 800;
         }
         #adblock-notice p {
-            color: #8b949e;
+            color: #c5c6c7;
             font-size: 14px;
-            max-width: 360px;
+            max-width: 400px;
             line-height: 1.6;
             margin-bottom: 22px;
         }
@@ -57,7 +57,7 @@
             padding: 14px 28px;
             border-radius: 8px;
             border: none;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 800;
             letter-spacing: 1px;
             cursor: pointer;
@@ -257,7 +257,7 @@
     <!-- ADBLOCK DETECTED OVERLAY -->
     <div id="adblock-notice">
         <h2>⚠️ ADBLOCKER DETECTED!</h2>
-        <p>हमारे सर्वर का खर्च ऐड्स से चलता है। कृपया अपना <b>AdBlocker, Brave Shields या Private DNS</b> बंद करें और रीलोड करें।</p>
+        <p>Brave Shields / AdBlocker चालू है! <br><br>कृपया ऊपर URL बार में 🦁 <b>Brave Shields</b> या अपना <b>AdBlocker बंद करें</b> और पेज को रीलोड करें।</p>
         <button class="btn-reload" onclick="window.location.reload()">I DISABLED ADBLOCK (RELOAD)</button>
     </div>
 
@@ -347,23 +347,37 @@
 
         let selectedHours = 3;
 
-        // Anti-AdBlock Detector
-        function checkAdBlock() {
-            let testAd = document.createElement('div');
-            testAd.innerHTML = '&nbsp;';
-            testAd.className = 'adsbox pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads';
-            testAd.style.position = 'absolute';
-            testAd.style.left = '-9999px';
-            document.body.appendChild(testAd);
-
-            setTimeout(function() {
-                if (testAd.offsetHeight === 0 || testAd.style.display === 'none' || !testAd.parentNode) {
-                    document.getElementById('adblock-notice').style.display = 'flex';
-                }
-                testAd.remove();
-            }, 600);
+        // SUPER BRAVE/ADBLOCK DETECTOR
+        function triggerAdblockNotice() {
+            document.getElementById('adblock-notice').style.display = 'flex';
         }
-        window.addEventListener('load', checkAdBlock);
+
+        async function detectAdBlocker() {
+            try {
+                const testUrl = new Request('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                await fetch(testUrl);
+            } catch (error) {
+                triggerAdblockNotice();
+                return;
+            }
+
+            let bait = document.createElement('div');
+            bait.className = 'pub_300x250 pub_300x250m pub_728x90 text-ad textAd text_ad text_ads text-ads text-ad-links';
+            bait.style.cssText = 'width: 1px !important; height: 1px !important; position: absolute !important; left: -10000px !important; top: -1000px !important;';
+            document.body.appendChild(bait);
+
+            setTimeout(() => {
+                if (bait.offsetHeight === 0 || bait.clientHeight === 0 || bait.style.display === 'none') {
+                    triggerAdblockNotice();
+                }
+                bait.remove();
+            }, 300);
+        }
+
+        window.addEventListener('DOMContentLoaded', detectAdBlocker);
 
         function startVerificationFlow(hours) {
             const claimType = (hours === 6) ? '6h' : '3h';
@@ -471,6 +485,5 @@
             });
         }
     </script>
-
 </body>
 </html>
