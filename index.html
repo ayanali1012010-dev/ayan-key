@@ -75,7 +75,7 @@
             align-items: center;
         }
 
-        /* FAKE NINJA STYLE TITLES */
+        /* TITLES */
         .ninja-title {
             font-size: 26px;
             font-weight: 900;
@@ -238,12 +238,15 @@
 
         .ad-iframe-container {
             width: 100%;
-            height: 260px;
+            height: 280px;
             margin: 14px 0 10px 0;
             border-radius: 10px;
             overflow: hidden;
             border: 1px solid #212631;
             background: #0f1116;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .ad-iframe-container iframe {
@@ -315,6 +318,9 @@
             background: #238636;
             color: #ffffff;
             margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
 
         .btn-action:disabled {
@@ -377,14 +383,14 @@
 </head>
 <body>
 
-    <!-- OVERLAY POPUP (SPONSOR) -->
+    <!-- OVERLAY POPUP (SPONSOR - DYNAMIC ROTATING ADS) -->
     <div id="adOverlay">
         <div class="overlay-card">
             <div id="overlayStepText" style="color:#00e5ff; font-weight:800; font-size:15px; margin-bottom:6px;">SPONSORED VERIFICATION</div>
             <div id="overlayTimerText" style="color:#f85149; font-size:13px; font-weight:bold; margin-bottom:14px;">Please view ad to unlock content (18s)</div>
             
-            <div class="ad-iframe-container" style="margin-bottom: 16px;">
-                <iframe id="overlayIframe" src="" loading="lazy"></iframe>
+            <div id="overlayAdSlot" class="ad-iframe-container" style="margin-bottom: 16px;">
+                <!-- dynamic ad inserted via JS -->
             </div>
 
             <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (18s)...</button>
@@ -545,7 +551,7 @@
                 Wait for the progress countdown to hit zero before proceeding.
             </div>
 
-            <!-- AD 3 (DYNAMIC SMARTLINK IFRAME) -->
+            <!-- AD 3 -->
             <div class="ad-iframe-container">
                 <iframe id="stepAdIframe" src="" loading="lazy"></iframe>
             </div>
@@ -586,8 +592,9 @@
                 Finalizing node synchronization enables immediate release of the session token.
             </div>
 
+            <!-- CONTINUE BUTTON -->
             <div class="card" style="text-align: center;">
-                <button id="btnContinue" class="btn-action" disabled onclick="handleNextStep()">PLEASE WAIT FOR TIMER...</button>
+                <button id="btnContinue" class="btn-action" disabled onclick="handleNextStep(event)">PLEASE WAIT FOR TIMER...</button>
             </div>
 
             <!-- AD 7 -->
@@ -669,7 +676,13 @@
 
     <script>
         const BASE_DB_URL = "https://vpna-13387-default-rtdb.firebaseio.com/";
-        const DIRECT_AD_LINK = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c";
+        
+        // ADSTERRA DIRECT LINKS WITH UNIQUE OFFERS & PARAMETERS
+        const DIRECT_AD_LINKS = [
+            "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c",
+            "https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js",
+            "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c&source=sponsored"
+        ];
 
         const stepTimers = [18, 18, 18, 18, 18, 18];
         const stepHeadings = [
@@ -690,22 +703,6 @@
         let finalGeneratedKey = "";
         let generatedExpireTime = 0;
 
-        // पेज लोड होने पर चेक करें कि क्या यूजर ऐड देखकर बैक आया है
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedState = sessionStorage.getItem("ayan_pending_step");
-            if (savedState) {
-                const data = JSON.parse(savedState);
-                sessionStorage.removeItem("ayan_pending_step");
-                selectedDuration = data.dur;
-                totalSteps = data.total;
-                currentStep = data.step;
-
-                document.getElementById("stage-select-duration").style.display = "none";
-                document.getElementById("stage-gateway").style.display = "block";
-                startOverlayTimer();
-            }
-        });
-
         function startVerification(dur) {
             selectedDuration = dur;
             totalSteps = (dur === '6h') ? 6 : 4;
@@ -717,17 +714,43 @@
             startOverlayTimer();
         }
 
-        // 1. POPUP OVERLAY TIMER (18s)
+        // 1. DYNAMIC ROTATING OVERLAY AD (बदलता हुआ नया विज्ञापन)
         function startOverlayTimer() {
             let adSeconds = 18;
             const overlay = document.getElementById("adOverlay");
             const unlockBtn = document.getElementById("btnUnlockSite");
             const overlayTimer = document.getElementById("overlayTimerText");
             const overlayStepText = document.getElementById("overlayStepText");
-            const overlayIframe = document.getElementById("overlayIframe");
+            const overlaySlot = document.getElementById("overlayAdSlot");
 
-            // हर बार नया ऐड लोड करने के लिए कैश-बस्टर जोड़ा गया
-            overlayIframe.src = DIRECT_AD_LINK + "&t=" + new Date().getTime();
+            // हर बार अलग विज्ञापन रेंडर करने के लिए रैंडम/रोटेशन लॉजिक
+            const randomCache = Date.now() + "_" + Math.floor(Math.random() * 99999);
+            const adType = currentStep % 2;
+
+            if (adType === 0) {
+                // 300x250 Banner Ad View
+                overlaySlot.innerHTML = `
+                    <div style="width:300px; height:250px; margin:auto;">
+                        <iframe srcdoc="
+                            <style>body{margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:#000;}</style>
+                            <scr`+`ipt type='text/javascript'>
+                                atOptions = {
+                                    'key' : '51094004b5c27de1e2c4ed112a7e100b',
+                                    'format' : 'iframe',
+                                    'height' : 250,
+                                    'width' : 300,
+                                    'params' : {}
+                                };
+                            </scr`+`ipt>
+                            <scr`+`ipt type='text/javascript' src='https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js'></scr`+`ipt>
+                        " style="width:100%;height:100%;border:none;"></iframe>
+                    </div>
+                `;
+            } else {
+                // Fresh Smartlink Direct Offer
+                const freshUrl = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c&nocache=" + randomCache;
+                overlaySlot.innerHTML = `<iframe src="${freshUrl}" style="width:100%;height:100%;border:none;" loading="eager"></iframe>`;
+            }
 
             overlay.style.display = "flex";
             overlayStepText.innerText = "SPONSORED VERIFICATION (STEP " + currentStep + "/" + totalSteps + ")";
@@ -765,10 +788,10 @@
             document.getElementById("stepIndicator").innerText = "STEP " + step + "/" + totalSteps;
             document.getElementById("articleTitle").innerText = stepHeadings[step - 1] || "Verification Step";
 
-            // बीच वाले ऐड को हर स्टेप पर रीफ्रेश करें
+            // बीच वाले विज्ञापन का लिंक भी फ्रेश लोड करें
             const stepIframe = document.getElementById("stepAdIframe");
             if (stepIframe) {
-                stepIframe.src = DIRECT_AD_LINK + "&step=" + step;
+                stepIframe.src = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c&step=" + step + "&t=" + Date.now();
             }
 
             let timerSeconds = stepTimers[step - 1] || 18;
@@ -805,40 +828,29 @@
             }, 1000);
         }
 
-        // 3. CONTINUE CLICK LOGIC (रीयल रीडायरेक्ट - दूसरा पेज/वेबसाइट खुलेगी)
-        function handleNextStep() {
-            let shouldRedirectToAd = false;
+        // 3. CONTINUE CLICK LOGIC (नया ऐड पेज खुलेगा)
+        function handleNextStep(e) {
+            if (e) e.preventDefault();
+
+            let shouldOpenAdPage = false;
 
             if (totalSteps === 4) {
-                // 4 बार में 2 बार सीधा ऐड खुलेगा (Step 1 और Step 3 पर)
-                if (currentStep === 1 || currentStep === 3) {
-                    shouldRedirectToAd = true;
-                }
+                if (currentStep === 1 || currentStep === 3) shouldOpenAdPage = true;
             } else if (totalSteps === 6) {
-                // 6 बार में 4 बार सीधा ऐड खुलेगा (Step 1, 2, 4, 5 पर)
-                if (currentStep === 1 || currentStep === 2 || currentStep === 4 || currentStep === 5) {
-                    shouldRedirectToAd = true;
-                }
+                if (currentStep === 1 || currentStep === 2 || currentStep === 4 || currentStep === 5) shouldOpenAdPage = true;
             }
 
-            if (currentStep < totalSteps) {
-                const nextStep = currentStep + 1;
+            // नए टैब में सीधा नया ऐड ऑफर खोलें
+            if (shouldOpenAdPage) {
+                const freshAdUrl = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c&click=" + Date.now();
+                window.open(freshAdUrl, '_blank');
+            }
 
-                if (shouldRedirectToAd) {
-                    // यूजर की अगली प्रोग्रेस सेव करें ताकि ऐड देखकर बैक आने पर अगला स्टेप मिले
-                    sessionStorage.setItem("ayan_pending_step", JSON.stringify({
-                        dur: selectedDuration,
-                        total: totalSteps,
-                        step: nextStep
-                    }));
-                    // सीधे ऐड वेबसाइट पर ले जाएँ (ब्लॉकर की कोई समस्या नहीं आएगी)
-                    window.location.href = DIRECT_AD_LINK;
-                } else {
-                    currentStep = nextStep;
-                    startOverlayTimer();
-                }
+            // स्टेप आगे बढ़ाएँ
+            if (currentStep < totalSteps) {
+                currentStep++;
+                startOverlayTimer();
             } else {
-                // सारे स्टेप पूरे होने पर Generate Key स्क्रीन पर ले जाएँ
                 document.getElementById("stage-gateway").style.display = "none";
                 document.getElementById("stage-generate-view").style.display = "block";
                 document.getElementById("stepIndicator").innerText = "GENERATE";
