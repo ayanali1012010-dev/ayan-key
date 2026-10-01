@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AYAN KEY — STEP 1/6</title>
+<script>
+  // अगर Step 1 पास नहीं किया है तो सीधे बाहर फेको
+  if (sessionStorage.getItem("step_unlocked") !== "step1_cleared") {
+    alert("⚠ Bypass Detected! पहले Step 1 पूरा करें।");
+    window.location.replace("index.html");
+  }
+</script>
 
   <!-- ADSTERRA POPUNDER & SOCIAL BAR -->
   <script src="https://pl31582757.profitablecpmnetwork.com/1f/89/9d/1f899d47c5d0db2908051a84f3eb7826.js"></script>
