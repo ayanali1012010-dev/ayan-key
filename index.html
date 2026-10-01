@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance & Wealth Portal - Secure Gateway</title>
+    <title>AYAN KEY - ACCESS PORTAL</title>
 
-    <!-- 1. ADSTERRA SOCIAL BAR SCRIPT -->
-    <script async src="https://pl31582757.profitableratecpmnetwork.com/1f/89/9d/1f899d04f76fc54f606dd14d7b408935.js"></script>
-
-    <!-- 2. ADSTERRA POPUNDER SCRIPT -->
+    <!-- ADSTERRA BACKGROUND ADS (POPUNDER & SOCIALBAR) -->
+    <script src="https://pl31582757.profitableratecpmnetwork.com/1f/89/9d/1f899d04f76fc54f606dd14d7b408935.js"></script>
     <script src="https://pl31582759.profitableratecpmnetwork.com/fd/24/c2/fd24c234964cf2b1a3347ce11c03cd83.js"></script>
 
     <style>
@@ -24,22 +22,332 @@
         }
 
         body {
-            background-color: #0d1117;
+            background-color: #0b0c10;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             color: #c9d1d9;
-            line-height: 1.7;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
-        /* MANDATORY AD OVERLAY */
+        /* HEADER */
+        header {
+            width: 100%;
+            background: #111318;
+            border-bottom: 1px solid #1f232d;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-logo {
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+        .header-logo span { color: #00e5ff; }
+
+        .step-badge {
+            background: #238636;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .main-wrapper {
+            max-width: 460px;
+            width: 100%;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* FAKE NINJA STYLE TITLES */
+        .ninja-title {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #ffffff;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .ninja-title span { color: #00e5ff; }
+
+        .ninja-sub {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #555e70;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        /* CARDS */
+        .card {
+            background: #12141a;
+            border: 1px solid #1f232d;
+            border-radius: 14px;
+            width: 100%;
+            padding: 20px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-label {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #7d8594;
+            text-align: center;
+            margin-bottom: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 3H / 6H BUTTONS */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-duration-3h {
+            flex: 1;
+            padding: 16px 8px;
+            border-radius: 8px;
+            border: 1.5px solid #ffb703;
+            background: rgba(255, 183, 3, 0.05);
+            color: #ffb703;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-duration-3h:active {
+            background: #ffb703;
+            color: #000;
+            transform: scale(0.98);
+        }
+
+        .btn-duration-6h {
+            flex: 1;
+            padding: 16px 8px;
+            border-radius: 8px;
+            border: 1.5px solid #00e5ff;
+            background: rgba(0, 229, 255, 0.05);
+            color: #00e5ff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-duration-6h:active {
+            background: #00e5ff;
+            color: #000;
+            transform: scale(0.98);
+        }
+
+        .help-note {
+            font-size: 11px;
+            color: #555e70;
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.4;
+        }
+
+        /* RULES CARD */
+        .rules-card {
+            background: #101217;
+            border: 1px solid #1a1e27;
+            border-radius: 14px;
+            width: 100%;
+            padding: 18px 16px;
+            margin-bottom: 16px;
+        }
+
+        .rules-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #7d8594;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .rules-list {
+            list-style: none;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #8b949e;
+        }
+
+        .rules-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .rules-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #7d8594;
+            font-size: 14px;
+        }
+
+        /* AD CONTAINERS */
+        .ad-container {
+            width: 100%;
+            min-height: 250px;
+            margin: 14px 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #0f1116;
+            border: 1px solid #212631;
+        }
+
+        .ad-native-container {
+            width: 100%;
+            min-height: 90px;
+            margin: 14px 0 10px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #0f1116;
+            border: 1px solid #212631;
+            padding: 6px;
+        }
+
+        .ad-iframe-container {
+            width: 100%;
+            height: 260px;
+            margin: 14px 0 10px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #212631;
+            background: #0f1116;
+        }
+
+        .ad-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 10-WORD TEXT BLOCK */
+        .ad-text-block-10 {
+            background: #111319;
+            border-left: 3px solid #00e5ff;
+            padding: 10px 14px;
+            margin-bottom: 12px;
+            border-radius: 0 6px 6px 0;
+            font-size: 13px;
+            color: #c9d1d9;
+            line-height: 1.5;
+        }
+
+        /* ACCESS PORTAL STYLE */
+        .key-glow-box {
+            background: #0d0f14;
+            border: 1.5px dashed #00e5ff;
+            border-radius: 10px;
+            padding: 24px 14px;
+            text-align: center;
+            margin-bottom: 16px;
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.08);
+        }
+
+        .key-code-glow {
+            font-size: 21px;
+            color: #00e5ff;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+            word-break: break-all;
+        }
+
+        .btn-copy-cyan {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            background: #00e5ff;
+            color: #000000;
+            transition: all 0.2s ease;
+        }
+
+        .btn-copy-cyan:hover {
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+        }
+
+        .btn-action {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            background: #238636;
+            color: #ffffff;
+            margin-top: 10px;
+        }
+
+        .btn-action:disabled {
+            background: #1b1e26;
+            color: #555e70;
+            cursor: not-allowed;
+            border: 1px solid #2a303c;
+        }
+
+        /* TIMER DISPLAY */
+        .countdown-timer-box {
+            display: none;
+            margin-top: 14px;
+            padding: 12px;
+            background: rgba(0, 229, 255, 0.04);
+            border: 1px solid #1f2733;
+            border-radius: 8px;
+        }
+
+        .countdown-value {
+            font-size: 26px;
+            font-weight: 900;
+            color: #3fb950;
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+            margin-top: 4px;
+        }
+
+        /* SPONSORED OVERLAY */
         #adOverlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(13, 17, 23, 0.98);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(11, 12, 16, 0.98);
             z-index: 999999;
             display: none;
             flex-direction: column;
@@ -49,323 +357,56 @@
         }
 
         .overlay-card {
-            background: #161b22;
-            border: 1px solid #30363d;
+            background: #12141a;
+            border: 1px solid #1f232d;
             border-radius: 12px;
-            max-width: 440px;
+            max-width: 420px;
             width: 100%;
-            padding: 16px;
+            padding: 22px 16px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-
-        .overlay-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #58a6ff;
-            margin-bottom: 6px;
-        }
-
-        .overlay-timer {
-            font-size: 13px;
-            color: #f85149;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        .overlay-ad-box {
-            width: 100%;
-            height: 360px;
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            margin-bottom: 14px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .overlay-ad-box iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* HEADER */
-        header {
-            background: #161b22;
-            border-bottom: 1px solid #30363d;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 18px;
-            font-weight: 800;
-            color: #58a6ff;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .step-badge {
-            background: #238636;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 5px 12px;
-            border-radius: 14px;
-        }
-
-        .container {
-            max-width: 720px;
-            margin: 20px auto;
-            padding: 0 16px;
-            width: 100%;
-            flex: 1;
-        }
-
-        .timer-panel {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 14px 18px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .timer-text {
-            font-size: 15px;
-            font-weight: 700;
-            color: #58a6ff;
-        }
-
-        .scroll-prompt {
-            display: none;
-            color: #3fb950;
-            font-size: 15px;
-            font-weight: 800;
-            animation: bounce 1.2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(4px); }
-        }
-
-        .ad-banner-slot {
-            width: 100%;
-            min-height: 250px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .ad-native-slot {
-            width: 100%;
-            min-height: 100px;
-            margin: 20px 0;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            background: #161b22;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .ad-iframe-slot {
-            width: 100%;
-            height: 320px;
-            margin: 20px 0;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #161b22;
-        }
-
-        .ad-iframe-slot iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .content-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 24px 20px;
-            margin-bottom: 16px;
-        }
-
-        h1 {
-            font-size: 22px;
-            color: #ffffff;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        h2 {
-            font-size: 18px;
-            color: #58a6ff;
-            margin: 18px 0 10px;
-        }
-
-        p {
-            margin-bottom: 14px;
-            color: #8b949e;
-            font-size: 14px;
-        }
-
-        ul {
-            margin: 0 0 16px 20px;
-            color: #8b949e;
-            font-size: 14px;
-        }
-
-        li {
-            margin-bottom: 6px;
-        }
-
-        .notice-box {
-            background: rgba(88, 166, 255, 0.08);
-            border-left: 4px solid #58a6ff;
-            padding: 12px 14px;
-            border-radius: 4px;
-            margin: 16px 0;
-            font-size: 13px;
-            color: #c9d1d9;
-        }
-
-        .bottom-action-panel {
-            background: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 24px 20px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .btn-action {
-            width: 100%;
-            padding: 16px;
-            border-radius: 8px;
-            border: none;
-            font-size: 15px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: center;
-            display: block;
-            text-decoration: none;
-        }
-
-        .btn-action:disabled {
-            background: #21262d;
-            color: #484f58;
-            cursor: not-allowed;
-            border: 1px solid #30363d;
-        }
-
-        .btn-action:not(:disabled) {
-            background: #238636;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4);
-        }
-
-        .btn-action:not(:disabled):hover {
-            background: #2ea043;
-            transform: translateY(-2px);
-        }
-
-        /* DURATION SELECTION */
-        .btn-duration-group {
-            display: flex;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .btn-duration {
-            flex: 1;
-            padding: 16px;
-            border-radius: 8px;
-            border: 1px solid #58a6ff;
-            background: rgba(88, 166, 255, 0.08);
-            color: #58a6ff;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .btn-duration:active {
-            background: #58a6ff;
-            color: #ffffff;
-        }
-
-        /* KEY DISPLAY */
-        .key-box-large {
-            background: #0d1117;
-            border: 1px dashed #58a6ff;
-            border-radius: 10px;
-            padding: 24px 14px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .key-code {
-            font-size: 20px;
-            color: #58a6ff;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin: 10px 0;
-            word-break: break-all;
         }
 
         footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #484f58;
-            border-top: 1px solid #21262d;
             margin-top: auto;
+            padding: 18px;
+            font-size: 11px;
+            color: #484f58;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <!-- MANDATORY 15s AD OVERLAY -->
+    <!-- OVERLAY POPUP (SPONSOR - NO BANNER / NO NATIVE BANNER) -->
     <div id="adOverlay">
         <div class="overlay-card">
-            <div id="overlayStepText" class="overlay-title">SPONSORED VERIFICATION</div>
-            <div id="overlayTimerText" class="overlay-timer">Please view ad to unlock content (12s)</div>
+            <div id="overlayStepText" style="color:#00e5ff; font-weight:800; font-size:15px; margin-bottom:6px;">SPONSORED VERIFICATION</div>
+            <div id="overlayTimerText" style="color:#f85149; font-size:13px; font-weight:bold; margin-bottom:14px;">Please view ad to unlock content (18s)</div>
             
-            <div class="overlay-ad-box">
-                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c"></iframe>
+            <!-- SMARTLINK IFRAME IN OVERLAY -->
+            <div class="ad-iframe-container" style="margin-bottom: 16px;">
+                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
             </div>
 
-            <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (12s)...</button>
+            <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (18s)...</button>
         </div>
     </div>
 
-    <!-- MAIN HEADER -->
     <header>
-        <a href="#" class="logo">FINANCE<span>GATE</span></a>
+        <div class="header-logo">AYAN <span>PORTAL</span></div>
         <span id="stepIndicator" class="step-badge">START</span>
     </header>
 
-    <div class="container" id="mainContainer">
+    <div class="main-wrapper">
 
         <!-- ================= STAGE 1: DURATION SELECTION ================= -->
         <div id="stage-select-duration" style="width: 100%;">
-            <!-- 1. TOP AD BANNER 300x250 -->
-            <div class="ad-banner-slot">
+            
+            <div class="ninja-title">AYAN <span>KEY</span></div>
+            <div class="ninja-sub">FREE KEY — 3H OR 6H SESSION</div>
+
+            <!-- AD 1 (BANNER 300x250) -->
+            <div class="ad-container" style="margin-top: 0;">
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -378,77 +419,49 @@
                 <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
             </div>
 
-            <div class="content-card" style="text-align: center;">
-                <h1>Select Verification Duration</h1>
-                <p>Choose your access session validity to initiate the secure authorization protocol.</p>
-                
-                <div class="btn-duration-group">
-                    <button class="btn-duration" onclick="selectDuration('3h')">⚡ 3 HOURS KEY</button>
-                    <button class="btn-duration" onclick="selectDuration('6h')">⚡ 6 HOURS KEY</button>
+            <!-- CHOOSE DURATION CARD -->
+            <div class="card">
+                <div class="card-label">YOUR KEY<br><span style="font-size: 10px; color: #555e70;">CHOOSE YOUR SESSION DURATION</span></div>
+                <div class="btn-group">
+                    <button class="btn-duration-3h" onclick="startVerification('3h')">3 HOURS</button>
+                    <button class="btn-duration-6h" onclick="startVerification('6h')">6 HOURS</button>
                 </div>
+                <div class="help-note">Choose duration, complete the task, key appears automatically</div>
             </div>
 
-            <!-- 2. NATIVE AD WIDGET -->
-            <div class="ad-native-slot">
-                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
-                <div id="container-882389533e02c36e6957b2a986f7bd41"></div>
-            </div>
-
-            <!-- 3. BOTTOM AD IFRAME FULL -->
-            <div class="ad-iframe-slot">
-                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
-            </div>
-        </div>
-
-        <!-- ================= STAGE 2: ORIGINAL VERIFICATION UI ================= -->
-        <div id="stage-gateway" style="display: none; width: 100%;">
-            <!-- TOP TIMER & STATUS PANEL -->
-            <div class="timer-panel">
-                <div id="timerCountdown" class="timer-text">⏳ VERIFYING SESSION: PLEASE WAIT...</div>
-                <div id="scrollPrompt" class="scroll-prompt">✅ VERIFICATION READY — SCROLL DOWN TO CONTINUE ⬇</div>
-            </div>
-
-            <!-- 1. AD BANNER 300x250 -->
-            <div class="ad-banner-slot">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '51094004b5c27de1e2c4ed112a7e100b',
-                        'format' : 'iframe',
-                        'height' : 250,
-                        'width' : 300,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
-            </div>
-
-            <!-- CONTENT SECTION 1 -->
-            <div class="content-card">
-                <h1 id="articleTitle">Complete Strategy for Debt Optimization and Refinancing</h1>
-                <p>Managing multiple high-interest obligations can place immense stress on personal and business cash flow. Through strategic loan restructuring and balance consolidation, borrowers can significantly reduce overall amortization timelines while lowering annual percentage rates (APR).</p>
-                <div class="notice-box">
-                    <strong>Notice:</strong> Always check lender terms and closing fees before refinancing.
-                </div>
-            </div>
-
-            <!-- 2. NATIVE AD WIDGET -->
-            <div class="ad-native-slot">
-                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
-                <div id="container-882389533e02c36e6957b2a986f7bd41"></div>
-            </div>
-
-            <!-- CONTENT SECTION 2 -->
-            <div class="content-card">
-                <h2>Phase 1: Evaluating Historical Credit Metrics</h2>
-                <p>Financial institutions evaluate credit profiles based on debt-to-income (DTI) metrics, repayment consistency, and current revolving account utilization. Maintaining utilization rates under thirty percent directly improves institutional approval likelihood.</p>
-                <ul>
-                    <li>Review all three major credit repository reports for discrepancies.</li>
-                    <li>Calculate remaining principal vs accrued monthly interest.</li>
+            <!-- RULES CARD -->
+            <div class="rules-card">
+                <div class="rules-title">RULES</div>
+                <ul class="rules-list">
+                    <li>Key is valid for <b>3 hours</b> (1x task) or <b>6 hours</b> (2x task) per session.</li>
+                    <li>1 key = 1 device — cannot be used on another device.</li>
+                    <li>While a key is active, you cannot generate a new one.</li>
+                    <li>After key expires, wait <b>10 minutes</b> before generating a new key.</li>
+                    <li>You must complete the verification task to receive a key.</li>
                 </ul>
             </div>
 
-            <!-- 3. AD BANNER 300x250 -->
-            <div class="ad-banner-slot">
+            <!-- AD 2 (NATIVE BANNER) -->
+            <div class="ad-native-container">
+                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
+                <div id="container-882389533e02c36e6957b2a986f7bd41"></div>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Complete security verification steps carefully to claim your personal key.
+            </div>
+
+            <!-- AD 3 (SMARTLINK IFRAME) -->
+            <div class="ad-iframe-container">
+                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Always ensure your internet connection remains stable during this process.
+            </div>
+
+            <!-- AD 4 (BANNER 300x250) -->
+            <div class="ad-container">
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -460,26 +473,31 @@
                 </script>
                 <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
             </div>
-
-            <!-- CONTENT SECTION 3 -->
-            <div class="content-card">
-                <h2>Phase 2: Risk Assessment & Cost Optimization</h2>
-                <p>Effective restructuring requires comparing cumulative costs across the entire lifecycle of the facility. An extended amortization schedule might lower current monthly outflows but could accumulate significantly higher aggregate interest payments over time.</p>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Do not refresh browser window while steps are being verified.
             </div>
 
-            <!-- 4. AD IFRAME FULL -->
-            <div class="ad-iframe-slot">
+            <!-- AD 5 (SMARTLINK IFRAME) -->
+            <div class="ad-iframe-container">
                 <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
             </div>
-
-            <!-- CONTENT SECTION 4 -->
-            <div class="content-card">
-                <h2>Phase 3: Digital Underwriting Systems</h2>
-                <p>Modern credit processing uses automated algorithmic underwriting rather than manual agent evaluations. By submitting structured digital verification packets, applicants reduce clearance latency from weeks to under twenty-four hours.</p>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Each allocated key gives uninterrupted high-speed access per connected device.
             </div>
 
-            <!-- 5. AD BANNER 300x250 -->
-            <div class="ad-banner-slot">
+            <!-- AD 6 (NATIVE BANNER) -->
+            <div class="ad-native-container">
+                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Follow all system guidelines to receive valid authentication credentials instantly.
+            </div>
+
+            <!-- AD 7 (BANNER 300x250) -->
+            <div class="ad-container">
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -491,37 +509,166 @@
                 </script>
                 <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
             </div>
-
-            <!-- EXTREME BOTTOM CONTINUE PANEL -->
-            <div class="bottom-action-panel" id="actionPanel">
-                <div style="font-size: 12px; color: #8b949e; margin-bottom: 12px; letter-spacing: 1px;">FINAL GATEWAY CONFIRMATION</div>
-                <button id="btnContinue" class="btn-action" disabled onclick="handleContinue()">PLEASE WAIT FOR TIMER...</button>
-            </div>
-
-            <!-- 6. AD IFRAME FULL -->
-            <div class="ad-iframe-slot">
-                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Final token issuance guarantees full compatibility with our secure servers.
             </div>
         </div>
 
-        <!-- ================= STAGE 3: KEY REVEAL UI ================= -->
-        <div id="stage-key-display" style="display: none; width: 100%;">
-            <div class="content-card" style="text-align: center;">
-                <h1>Access Key Authorization</h1>
-                <p>Your verification steps have completed successfully. Generate your session token below.</p>
-
-                <div class="key-box-large">
-                    <div style="font-size: 11px; letter-spacing: 2px; color: #8b949e; margin-bottom: 6px;">YOUR ACCESS KEY</div>
-                    <div id="displayKey" class="key-code">READY TO GENERATE</div>
-                    <div id="validityInfo" style="font-size: 12px; color: #3fb950; margin-top: 6px;">Click the button below to generate</div>
-                </div>
-
-                <button id="btnGenerate" class="btn-action" style="background:#238636; color:#ffffff;" onclick="startGeneration()">⚡ GENERATE KEY</button>
-                <button id="btnCopy" class="btn-action" style="background:#58a6ff; color:#ffffff; display:none;" onclick="copyKey()">📋 COPY KEY</button>
+        <!-- ================= STAGE 2: VERIFICATION GATEWAY ================= -->
+        <div id="stage-gateway" style="display: none; width: 100%;">
+            <div class="card" style="text-align: center; border-color: #00e5ff;">
+                <div id="timerCountdown" style="color:#00e5ff; font-weight:800; font-size:14px;">⏳ VERIFYING SESSION: PLEASE WAIT...</div>
+                <div id="scrollPrompt" style="color:#3fb950; font-weight:800; font-size:14px; display:none;">✅ VERIFIED — SCROLL DOWN TO CONTINUE ⬇</div>
             </div>
 
-            <!-- KEY PAGE BANNER 300x250 -->
-            <div class="ad-banner-slot">
+            <!-- AD 1 (BANNER 300x250) -->
+            <div class="ad-container">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '51094004b5c27de1e2c4ed112a7e100b',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Security tokens are matched against network servers to establish validity.
+            </div>
+
+            <div class="card">
+                <h3 id="articleTitle" style="color: #ffffff; font-size: 16px; margin-bottom: 8px;">Verification Step</h3>
+                <p style="font-size: 13px; color: #8b949e;">Please wait for security token allocation and node sync to clear this gateway stage.</p>
+            </div>
+
+            <!-- AD 2 (NATIVE BANNER) -->
+            <div class="ad-native-container">
+                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Wait for the progress countdown to hit zero before proceeding.
+            </div>
+
+            <!-- AD 3 (SMARTLINK IFRAME) -->
+            <div class="ad-iframe-container">
+                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                All digital signatures are authenticated securely on our encrypted cloud.
+            </div>
+
+            <!-- AD 4 (BANNER 300x250) -->
+            <div class="ad-container">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '51094004b5c27de1e2c4ed112a7e100b',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Single device connection protects your bandwidth allocation from unauthorized abuse.
+            </div>
+
+            <!-- AD 5 (SMARTLINK IFRAME) -->
+            <div class="ad-iframe-container">
+                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Continuous session monitoring prevents token hijacking across open network protocols.
+            </div>
+
+            <!-- AD 6 (NATIVE BANNER) -->
+            <div class="ad-native-container">
+                <script async="async" data-cfasync="false" src="https://pl31579956.profitableratecpmnetwork.com/882389533e02c36e6957b2a986f7bd41/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Finalizing node synchronization enables immediate release of the session token.
+            </div>
+
+            <div class="card" style="text-align: center;">
+                <button id="btnContinue" class="btn-action" disabled onclick="handleNextStep()">PLEASE WAIT FOR TIMER...</button>
+            </div>
+
+            <!-- AD 7 (BANNER 300x250) -->
+            <div class="ad-container">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '51094004b5c27de1e2c4ed112a7e100b',
+                        'format' : 'iframe',
+                        'height' : 250,
+                        'width' : 300,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="https://www.highrevenueformat.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js"></script>
+            </div>
+            <!-- TEXT (10 WORDS) -->
+            <div class="ad-text-block-10">
+                Proceed directly to the portal to claim your generated key.
+            </div>
+        </div>
+
+        <!-- ================= STAGE 3: GENERATE VIEW ================= -->
+        <div id="stage-generate-view" style="display: none; width: 100%;">
+            <div class="ninja-title">ACCESS <span>PORTAL</span></div>
+            <div class="ninja-sub">TASK COMPLETED — GENERATE YOUR KEY</div>
+
+            <div class="card" style="text-align: center;">
+                <div class="key-glow-box">
+                    <div style="font-size: 10px; letter-spacing: 1.5px; color: #7d8594; text-transform: uppercase;">SESSION TOKEN STATUS</div>
+                    <div id="generatingStatusText" class="key-code-glow">READY TO GENERATE</div>
+                    <div id="generateSubText" style="font-size: 12px; color: #3fb950;">Click button below to initiate node</div>
+                </div>
+
+                <button id="btnStartGeneration" class="btn-copy-cyan" onclick="start18sKeyGeneration()">⚡ GENERATE KEY (18s)</button>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 4: ACCESS PORTAL (FINAL KEY SCREEN) ================= -->
+        <div id="stage-key-display" style="display: none; width: 100%;">
+            
+            <!-- TOP AD (SMARTLINK IFRAME) -->
+            <div class="ad-iframe-container" style="height: 140px; margin-top: 0;">
+                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+            </div>
+
+            <div class="ninja-title">ACCESS <span>PORTAL</span></div>
+            <div class="ninja-sub">TASK COMPLETED — GENERATE YOUR KEY</div>
+
+            <!-- KEY CARD -->
+            <div class="card">
+                <div class="key-glow-box">
+                    <div style="font-size: 10px; letter-spacing: 1.5px; color: #7d8594; text-transform: uppercase;">YOUR ACCESS KEY</div>
+                    <div id="displayFinalKey" class="key-code-glow">AYAN-XXXX:3H</div>
+                    <div id="finalValidityInfo" style="font-size: 12px; color: #00e5ff;">Valid for 3 Hours</div>
+
+                    <!-- LIVE COUNTDOWN TIMER -->
+                    <div id="countdownBox" class="countdown-timer-box">
+                        <div style="font-size: 10px; letter-spacing: 1.5px; color: #7d8594; text-transform: uppercase;">Time Remaining:</div>
+                        <div id="countdownTimer" class="countdown-value">00:00:00</div>
+                    </div>
+                </div>
+
+                <!-- CYAN COPY KEY BUTTON -->
+                <button id="btnCopyKey" class="btn-copy-cyan" onclick="copyKeyAndStartCountdown()">📋 COPY KEY</button>
+            </div>
+
+            <!-- BOTTOM AD (BANNER 300x250) -->
+            <div class="ad-container">
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '51094004b5c27de1e2c4ed112a7e100b',
@@ -540,30 +687,27 @@
     <footer>Verification Gateway Node • 256-Bit Authenticated Protocol</footer>
 
     <script>
-        const AD_DIRECT_LINK = "https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c";
         const BASE_DB_URL = "https://vpna-13387-default-rtdb.firebaseio.com/";
-
-        const stepTimers = [15, 15, 15, 15, 15, 15];
-
+        const stepTimers = [18, 18, 18, 18, 18, 18];
         const stepHeadings = [
-            "Step 1: Strategic Debt Optimization & Capital Planning",
-            "Step 2: Underwriting Protocols & Security Verification",
-            "Step 3: Asset Protection & Gateway Authentication",
-            "Step 4: Final Session Clearance & Node Routing",
-            "Step 5: High-Trust Token Verification Protocol",
-            "Step 6: Final Cryptographic Key Issuance"
+            "Step 1: Security Handshake & Session Sync",
+            "Step 2: Ad Network Routing Protocol",
+            "Step 3: Verification Token Allocation",
+            "Step 4: Final Clearance & Gateway Unlock",
+            "Step 5: High-Trust Protocol Clearance",
+            "Step 6: Cryptographic Key Issuance"
         ];
 
         let currentStep = 1;
         let selectedDuration = "3h";
         let totalSteps = 4;
+        let countdownInterval = null;
+        let overlayInterval = null;
+        let keyCountdownInterval = null;
+        let finalGeneratedKey = "";
+        let generatedExpireTime = 0;
 
-        function openAdDirect() {
-            try { window.open(AD_DIRECT_LINK, '_blank'); } catch(e) {}
-        }
-
-        function selectDuration(dur) {
-            openAdDirect();
+        function startVerification(dur) {
             selectedDuration = dur;
             totalSteps = (dur === '6h') ? 6 : 4;
             currentStep = 1;
@@ -571,11 +715,12 @@
             document.getElementById("stage-select-duration").style.display = "none";
             document.getElementById("stage-gateway").style.display = "block";
 
-            startMandatoryAdOverlay();
+            startOverlayTimer();
         }
 
-        function startMandatoryAdOverlay() {
-            let adSeconds = 12;
+        // 1. POPUP OVERLAY TIMER (18s)
+        function startOverlayTimer() {
+            let adSeconds = 18;
             const overlay = document.getElementById("adOverlay");
             const unlockBtn = document.getElementById("btnUnlockSite");
             const overlayTimer = document.getElementById("overlayTimerText");
@@ -584,16 +729,20 @@
             overlay.style.display = "flex";
             overlayStepText.innerText = "SPONSORED VERIFICATION (STEP " + currentStep + "/" + totalSteps + ")";
             unlockBtn.disabled = true;
+            overlayTimer.style.color = "#f85149";
             overlayTimer.innerText = "Please view ad to unlock content (" + adSeconds + "s)";
             unlockBtn.innerText = "PLEASE WAIT (" + adSeconds + "s)...";
 
-            window.overlayInterval = setInterval(() => {
+            if (overlayInterval) clearInterval(overlayInterval);
+
+            overlayInterval = setInterval(() => {
                 adSeconds--;
                 if (adSeconds > 0) {
                     overlayTimer.innerText = "Please view ad to unlock content (" + adSeconds + "s)";
                     unlockBtn.innerText = "PLEASE WAIT (" + adSeconds + "s)...";
                 } else {
-                    clearInterval(window.overlayInterval);
+                    clearInterval(overlayInterval);
+                    overlayTimer.style.color = "#3fb950";
                     overlayTimer.innerText = "✅ Ad verification completed!";
                     unlockBtn.disabled = false;
                     unlockBtn.innerText = "CONTINUE TO PAGE ➔";
@@ -603,14 +752,17 @@
 
         function closeAdOverlay() {
             document.getElementById("adOverlay").style.display = "none";
-            setupVerification(currentStep);
+            loadStep(currentStep);
         }
 
-        function setupVerification(step) {
+        // 2. PAGE STEP TIMER (18s)
+        function loadStep(step) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
             document.getElementById("stepIndicator").innerText = "STEP " + step + "/" + totalSteps;
             document.getElementById("articleTitle").innerText = stepHeadings[step - 1] || "Verification Step";
 
-            let timerSeconds = stepTimers[step - 1] || 15;
+            let timerSeconds = stepTimers[step - 1] || 18;
 
             const timerDisplay = document.getElementById("timerCountdown");
             const scrollMsg = document.getElementById("scrollPrompt");
@@ -622,13 +774,15 @@
             btn.innerText = "⏳ PLEASE WAIT (" + timerSeconds + "s)...";
             timerDisplay.innerText = "⏳ VERIFYING SESSION: PLEASE WAIT (" + timerSeconds + "s)...";
 
-            window.countdownInterval = setInterval(() => {
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            countdownInterval = setInterval(() => {
                 timerSeconds--;
                 if (timerSeconds > 0) {
                     timerDisplay.innerText = "⏳ VERIFYING SESSION: PLEASE WAIT (" + timerSeconds + "s)...";
                     btn.innerText = "⏳ PLEASE WAIT (" + timerSeconds + "s)...";
                 } else {
-                    clearInterval(window.countdownInterval);
+                    clearInterval(countdownInterval);
                     timerDisplay.style.display = "none";
                     scrollMsg.style.display = "block";
 
@@ -642,81 +796,118 @@
             }, 1000);
         }
 
-        function handleContinue() {
-            if (currentStep === 1 || currentStep === 3 || currentStep === 5) {
-                openAdDirect();
-            }
-
+        function handleNextStep() {
             if (currentStep < totalSteps) {
                 currentStep++;
-                startMandatoryAdOverlay();
+                startOverlayTimer();
             } else {
                 document.getElementById("stage-gateway").style.display = "none";
-                document.getElementById("stage-key-display").style.display = "block";
-                document.getElementById("stepIndicator").innerText = "FINAL";
+                document.getElementById("stage-generate-view").style.display = "block";
+                document.getElementById("stepIndicator").innerText = "GENERATE";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        function startGeneration() {
-            openAdDirect();
-            const btnGenerate = document.getElementById("btnGenerate");
-            btnGenerate.disabled = true;
+        // 3. KEY GENERATION (18s)
+        function start18sKeyGeneration() {
+            const btn = document.getElementById("btnStartGeneration");
+            btn.disabled = true;
 
-            let timeLeft = 12;
-            document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
-            document.getElementById("validityInfo").innerText = "Generating your " + selectedDuration + " secure key...";
+            let timeLeft = 18;
+            document.getElementById("generatingStatusText").innerText = "GENERATING (" + timeLeft + "s)...";
+            document.getElementById("generateSubText").innerText = "Allocating token on Firebase node...";
 
             const timer = setInterval(() => {
                 timeLeft--;
                 if (timeLeft > 0) {
-                    document.getElementById("displayKey").innerText = "WAIT " + timeLeft + " SECONDS...";
-                    btnGenerate.innerText = "⏳ PLEASE WAIT (" + timeLeft + "s)";
+                    document.getElementById("generatingStatusText").innerText = "GENERATING (" + timeLeft + "s)...";
+                    btn.innerText = "⏳ PLEASE WAIT (" + timeLeft + "s)";
                 } else {
                     clearInterval(timer);
-                    finalizeKey();
+                    finalizeKeyCreation();
                 }
             }, 1000);
         }
 
-        function finalizeKey() {
+        function finalizeKeyCreation() {
             const hours = (selectedDuration === '6h') ? 6 : 3;
             const randomCode = Math.random().toString(36).substring(2, 6).toUpperCase() + "-" + Math.random().toString(36).substring(2, 6).toUpperCase();
-            const generatedKey = "AYAN-" + randomCode + ":" + hours + "H";
+            finalGeneratedKey = "AYAN-" + randomCode + ":" + hours + "H";
             const now = new Date().getTime();
-            const expireTime = now + (hours * 60 * 60 * 1000);
+            generatedExpireTime = now + (hours * 60 * 60 * 1000);
 
             const payload = {
-                expires_at: expireTime,
+                expires_at: generatedExpireTime,
                 duration: hours + " Hours",
                 created_at: now,
                 status: "active"
             };
 
-            const saveToKeyNode = fetch(BASE_DB_URL + "key/" + encodeURIComponent(generatedKey) + ".json", {
+            const saveToKeyNode = fetch(BASE_DB_URL + "key/" + encodeURIComponent(finalGeneratedKey) + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             });
 
-            const saveToRootNode = fetch(BASE_DB_URL + encodeURIComponent(generatedKey) + ".json", {
+            const saveToRootNode = fetch(BASE_DB_URL + encodeURIComponent(finalGeneratedKey) + ".json", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload)
             });
 
             Promise.all([saveToKeyNode, saveToRootNode]).finally(() => {
-                document.getElementById("displayKey").innerText = generatedKey;
-                document.getElementById("validityInfo").innerText = "Valid for " + hours + " Hours";
-                document.getElementById("btnGenerate").style.display = "none";
-                document.getElementById("btnCopy").style.display = "block";
+                document.getElementById("stage-generate-view").style.display = "none";
+                document.getElementById("stage-key-display").style.display = "block";
+                document.getElementById("stepIndicator").innerText = "KEY CREATED";
+                document.getElementById("displayFinalKey").innerText = finalGeneratedKey;
+                document.getElementById("finalValidityInfo").innerText = "Valid for " + hours + " Hours";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
 
-        function copyKey() {
-            const key = document.getElementById("displayKey").innerText;
-            navigator.clipboard.writeText(key).then(() => {
-                alert("Key copied to clipboard!");
+        // 4. COPY KEY & LIVE COUNTDOWN START
+        function copyKeyAndStartCountdown() {
+            navigator.clipboard.writeText(finalGeneratedKey).then(() => {
+                const btn = document.getElementById("btnCopyKey");
+                btn.innerText = "✅ KEY COPIED & TIMER STARTED!";
+                btn.style.background = "#238636";
+                btn.style.color = "#ffffff";
+
+                document.getElementById("countdownBox").style.display = "block";
+
+                startReverseCountdown(generatedExpireTime);
             });
+        }
+
+        function startReverseCountdown(endTime) {
+            if (keyCountdownInterval) clearInterval(keyCountdownInterval);
+
+            function updateDisplay() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance <= 0) {
+                    clearInterval(keyCountdownInterval);
+                    document.getElementById("countdownTimer").innerText = "00:00:00";
+                    document.getElementById("countdownTimer").style.color = "#f85149";
+                    document.getElementById("finalValidityInfo").innerText = "Key Expired (Status: Inactive)";
+                    document.getElementById("finalValidityInfo").style.color = "#f85149";
+                    return;
+                }
+
+                const hours = Math.floor((distance / (1000 * 60 * 60)));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                const hStr = hours < 10 ? "0" + hours : hours;
+                const mStr = minutes < 10 ? "0" + minutes : minutes;
+                const sStr = seconds < 10 ? "0" + seconds : seconds;
+
+                document.getElementById("countdownTimer").innerText = hStr + ":" + mStr + ":" + sStr;
+            }
+
+            updateDisplay();
+            keyCountdownInterval = setInterval(updateDisplay, 1000);
         }
     </script>
 </body>
