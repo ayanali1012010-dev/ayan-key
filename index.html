@@ -384,7 +384,7 @@
             <div id="overlayTimerText" style="color:#f85149; font-size:13px; font-weight:bold; margin-bottom:14px;">Please view ad to unlock content (18s)</div>
             
             <div class="ad-iframe-container" style="margin-bottom: 16px;">
-                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+                <iframe id="overlayIframe" src="" loading="lazy"></iframe>
             </div>
 
             <button id="btnUnlockSite" class="btn-action" disabled onclick="closeAdOverlay()">PLEASE WAIT (18s)...</button>
@@ -545,9 +545,9 @@
                 Wait for the progress countdown to hit zero before proceeding.
             </div>
 
-            <!-- AD 3 -->
+            <!-- AD 3 (DYNAMIC SMARTLINK IFRAME) -->
             <div class="ad-iframe-container">
-                <iframe src="https://www.profitableratecpmnetwork.com/edi67kf4j?key=e6c73630469a3f3caec524d8a7a8681c" loading="lazy"></iframe>
+                <iframe id="stepAdIframe" src="" loading="lazy"></iframe>
             </div>
             <div class="ad-text-block-10">
                 All digital signatures are authenticated securely on our encrypted cloud.
@@ -690,6 +690,22 @@
         let finalGeneratedKey = "";
         let generatedExpireTime = 0;
 
+        // पेज लोड होने पर चेक करें कि क्या यूजर ऐड देखकर बैक आया है
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedState = sessionStorage.getItem("ayan_pending_step");
+            if (savedState) {
+                const data = JSON.parse(savedState);
+                sessionStorage.removeItem("ayan_pending_step");
+                selectedDuration = data.dur;
+                totalSteps = data.total;
+                currentStep = data.step;
+
+                document.getElementById("stage-select-duration").style.display = "none";
+                document.getElementById("stage-gateway").style.display = "block";
+                startOverlayTimer();
+            }
+        });
+
         function startVerification(dur) {
             selectedDuration = dur;
             totalSteps = (dur === '6h') ? 6 : 4;
@@ -708,6 +724,10 @@
             const unlockBtn = document.getElementById("btnUnlockSite");
             const overlayTimer = document.getElementById("overlayTimerText");
             const overlayStepText = document.getElementById("overlayStepText");
+            const overlayIframe = document.getElementById("overlayIframe");
+
+            // हर बार नया ऐड लोड करने के लिए कैश-बस्टर जोड़ा गया
+            overlayIframe.src = DIRECT_AD_LINK + "&t=" + new Date().getTime();
 
             overlay.style.display = "flex";
             overlayStepText.innerText = "SPONSORED VERIFICATION (STEP " + currentStep + "/" + totalSteps + ")";
@@ -745,6 +765,12 @@
             document.getElementById("stepIndicator").innerText = "STEP " + step + "/" + totalSteps;
             document.getElementById("articleTitle").innerText = stepHeadings[step - 1] || "Verification Step";
 
+            // बीच वाले ऐड को हर स्टेप पर रीफ्रेश करें
+            const stepIframe = document.getElementById("stepAdIframe");
+            if (stepIframe) {
+                stepIframe.src = DIRECT_AD_LINK + "&step=" + step;
+            }
+
             let timerSeconds = stepTimers[step - 1] || 18;
 
             const timerDisplay = document.getElementById("timerCountdown");
@@ -779,32 +805,40 @@
             }, 1000);
         }
 
-        // 3. CONTINUE CLICK LOGIC (4 बार में 2 बार ऐड, 6 बार में 4 बार ऐड)
+        // 3. CONTINUE CLICK LOGIC (रीयल रीडायरेक्ट - दूसरा पेज/वेबसाइट खुलेगी)
         function handleNextStep() {
-            let shouldOpenDirectAd = false;
+            let shouldRedirectToAd = false;
 
             if (totalSteps === 4) {
-                // 4 बार वाले में 2 बार ऐड खुलेगा (Step 1 और Step 3 पर)
+                // 4 बार में 2 बार सीधा ऐड खुलेगा (Step 1 और Step 3 पर)
                 if (currentStep === 1 || currentStep === 3) {
-                    shouldOpenDirectAd = true;
+                    shouldRedirectToAd = true;
                 }
             } else if (totalSteps === 6) {
-                // 6 बार वाले में 4 बार ऐड खुलेगा (Step 1, Step 2, Step 4, और Step 5 पर)
+                // 6 बार में 4 बार सीधा ऐड खुलेगा (Step 1, 2, 4, 5 पर)
                 if (currentStep === 1 || currentStep === 2 || currentStep === 4 || currentStep === 5) {
-                    shouldOpenDirectAd = true;
+                    shouldRedirectToAd = true;
                 }
             }
 
-            // नए टैब/पेज में सीधा ऐड खोलें
-            if (shouldOpenDirectAd) {
-                window.open(DIRECT_AD_LINK, '_blank');
-            }
-
-            // स्टेप आगे बढ़ाएँ
             if (currentStep < totalSteps) {
-                currentStep++;
-                startOverlayTimer();
+                const nextStep = currentStep + 1;
+
+                if (shouldRedirectToAd) {
+                    // यूजर की अगली प्रोग्रेस सेव करें ताकि ऐड देखकर बैक आने पर अगला स्टेप मिले
+                    sessionStorage.setItem("ayan_pending_step", JSON.stringify({
+                        dur: selectedDuration,
+                        total: totalSteps,
+                        step: nextStep
+                    }));
+                    // सीधे ऐड वेबसाइट पर ले जाएँ (ब्लॉकर की कोई समस्या नहीं आएगी)
+                    window.location.href = DIRECT_AD_LINK;
+                } else {
+                    currentStep = nextStep;
+                    startOverlayTimer();
+                }
             } else {
+                // सारे स्टेप पूरे होने पर Generate Key स्क्रीन पर ले जाएँ
                 document.getElementById("stage-gateway").style.display = "none";
                 document.getElementById("stage-generate-view").style.display = "block";
                 document.getElementById("stepIndicator").innerText = "GENERATE";
