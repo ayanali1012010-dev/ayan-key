@@ -5,38 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AYAN KEY — STEP 1/6</title>
 <script>
-  // अगर Step 1 पास नहीं किया है तो सीधे बाहर फेको
-  if (sessionStorage.getItem("step_unlocked") !== "step1_cleared") {
-    alert("⚠ Bypass Detected! पहले Step 1 पूरा करें।");
-    window.location.replace("index.html");
-  }
-  /* Hacking matrix-style dark background */
-body {
-  background-color: #050505;
-  color: #00ff66;
-  font-family: 'Courier New', Courier, monospace;
-}
 
-/* ⚠️ Icon ka auto big-small hone wala animation */
-.warning-pulse {
-  display: inline-block;
-  font-size: 40px;
-  animation: pulseScale 1.2s infinite ease-in-out;
-}
-
-@keyframes pulseScale {
-  0% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 5px #ffcc00);
-  }
-  50% {
-    transform: scale(1.6);
-    filter: drop-shadow(0 0 20px #ff3300);
-  }
-  100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 5px #ffcc00);
-  }
 }
 
 </script>
