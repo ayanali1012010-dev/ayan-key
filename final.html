@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYAN KEY — KEY GENERATED</title>
+
+  <!-- ADSTERRA POPUNDER & SOCIAL BAR -->
+  <script src="https://pl31582757.profitablecpmnetwork.com/1f/89/9d/1f899d47c5d0db2908051a84f3eb7826.js"></script>
+  <script src="https://pl31582759.profitablecpmnetwork.com/fd/24/c2/fd24c234907ecfa05fa5f9175440d993.js"></script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif; }
+    
+    #matrixCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-color: #030605;
+    }
+
+    body {
+      color: #c5c6c7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 12px;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(10, 15, 12, 0.88);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .header-logo { font-size: 16px; font-weight: 800; color: #ffffff; letter-spacing: 2px; }
+    .header-logo span { color: #00ff66; text-shadow: 0 0 10px #00ff66; }
+    .badge { background: #00ff66; color: #000; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 20px; box-shadow: 0 0 8px #00ff66; }
+    
+    .main-wrapper { max-width: 460px; width: 100%; padding: 20px 16px; display: flex; flex-direction: column; gap: 14px; z-index: 1; }
+    
+    .card {
+      background: rgba(12, 18, 15, 0.88);
+      border: 1px solid rgba(0, 255, 102, 0.25);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    }
+
+    .ad-banner {
+      width: 100%;
+      min-height: 250px;
+      background: rgba(5, 10, 8, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ad-banner iframe { width: 300px; height: 250px; border: none; overflow: hidden; }
+
+    .text-10 {
+      background: rgba(10, 16, 13, 0.85);
+      border-left: 3px solid #00ff66;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #7ee787;
+      text-align: left;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .btn-action {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.2s;
+      background: #00ff66;
+      color: #000;
+      box-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+    }
+    .btn-action:disabled {
+      background: #15221b;
+      color: #486153;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    
+    .key-container {
+      background: #050a07;
+      border: 1px dashed #00ff66;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 12px 0 8px 0;
+      word-break: break-all;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 17px;
+      color: #00ff66;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+      letter-spacing: 1.5px;
+    }
+
+    .validity-timer {
+      font-size: 12px;
+      color: #ffb703;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MATRIX BACKGROUND -->
+  <canvas id="matrixCanvas"></canvas>
+
+  <header>
+    <div class="header-logo">AYAN <span>PORTAL</span></div>
+    <span class="badge">SECURED</span>
+  </header>
+
+  <div class="main-wrapper">
+
+    <!-- KEY STATUS CARD -->
+    <div class="card" style="border-color: #00ff66;">
+      <h3 id="statusTitle" style="color: #00e5ff; font-size: 15px; margin-bottom: 6px; letter-spacing: 0.5px;">
+        ⚡ GENERATING SECURE KEY (15s)...
+      </h3>
+      <p id="statusDesc" style="font-size: 12px; color: #8b949e;">
+        System is allocating unique session token and hardware signature...
+      </p>
+      
+      <div id="keyBox" class="key-container">LOCKED — PLEASE WAIT...</div>
+      
+      <div id="validityBox" class="validity-timer" style="display: none;">
+        ⏳ KEY EXPIRES IN: <span id="expireTimer">06:00:00</span>
+      </div>
+
+      <button id="btnCopy" class="btn-action" disabled onclick="copyKey()">
+        ⏳ WAIT 15s TO GENERATE KEY
+      </button>
+    </div>
+
+    <!-- AD 1 -->
+    <div class="ad-banner">
+      <iframe srcdoc="<!DOCTYPE html><html><head><style>body{margin:0;padding:0;background:#070709;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;}</style></head><body><script type='text/javascript'>atOptions = { 'key' : '51094004b5c27de1e2c4ed112a7e100b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script><script type='text/javascript' src='https://www.highrevenuegate.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js'></script></body></html>"></iframe>
+    </div>
+
+    <div class="text-10">This key is strictly tied to this hardware node and valid for single user access.</div>
+
+    <!-- DETAILS CARD -->
+    <div class="card" style="text-align: left;">
+      <h4 style="color: #ffffff; font-size: 14px; margin-bottom: 6px;">Activation Guidelines</h4>
+      <p style="font-size: 12px; color: #8b949e; line-height: 1.6;">
+        1. Wait for countdown to reveal and unlock your key.<br>
+        2. Copy and paste it directly into your loader/client.<br>
+        3. After expiration, you must complete all steps from Step 1 again.
+      </p>
+    </div>
+
+    <!-- AD 2 -->
+    <div class="ad-banner">
+      <iframe srcdoc="<!DOCTYPE html><html><head><style>body{margin:0;padding:0;background:#070709;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;}</style></head><body><script type='text/javascript'>atOptions = { 'key' : '51094004b5c27de1e2c4ed112a7e100b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script><script type='text/javascript' src='https://www.highrevenuegate.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js'></script></body></html>"></iframe>
+    </div>
+
+    <div class="text-10">Node handshake successful. Security encryption level: AES-256 GCM.</div>
+
+    <!-- AD 3 -->
+    <div class="ad-banner">
+      <iframe srcdoc="<!DOCTYPE html><html><head><style>body{margin:0;padding:0;background:#070709;display:flex;justify-content:center;align-items:center;height:100vh;overflow:hidden;}</style></head><body><script type='text/javascript'>atOptions = { 'key' : '51094004b5c27de1e2c4ed112a7e100b', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script><script type='text/javascript' src='https://www.highrevenuegate.com/51094004b5c27de1e2c4ed112a7e100b/invoke.js'></script></body></html>"></iframe>
+    </div>
+
+  </div>
+
+  <script>
+    /* --- HACKER MATRIX CANVAS --- */
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const chars = "0123456789ABCDEF<>/*+-~_#[]{}AYAN";
+    const fontSize = 14;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = [];
+
+    function initDrops() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = [];
+      for (let i = 0; i < columns; i++) {
+        drops[i] = Math.floor(Math.random() * -50);
+      }
+    }
+    initDrops();
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(3, 6, 5, 0.08)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#00ff66";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+    setInterval(drawMatrix, 40);
+
+
+    /* --- SESSION & EXPIRATION LOGIC --- */
+    const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
+    let activeKey = localStorage.getItem("ayan_active_key");
+    let expiryTime = localStorage.getItem("ayan_key_expiry");
+    const now = Date.now();
+
+    function generateRandomKey() {
+      const hex = "0123456789ABCDEF";
+      let k1 = "", k2 = "";
+      for (let i = 0; i < 4; i++) {
+        k1 += hex.charAt(Math.floor(Math.random() * hex.length));
+        k2 += hex.charAt(Math.floor(Math.random() * hex.length));
+      }
+      return `AYAN-${k1}-${k2}-SECURE`;
+    }
+
+    function resetAndRedirectToStart() {
+      localStorage.removeItem("ayan_active_key");
+      localStorage.removeItem("ayan_key_expiry");
+      alert("Key expire ho chuki hai! Kripya Step 1 se firse shuru karein.");
+      window.location.href = "index.html"; // Shuruat wale page ka link
+    }
+
+    function unlockInterface(keyStr, targetExpiry) {
+      document.getElementById("statusTitle").innerText = "✔ ACTIVE SESSION KEY FOUND";
+      document.getElementById("statusTitle").style.color = "#00ff66";
+      document.getElementById("statusDesc").innerText = "Aapka 6-ghante ka session pehle se active hai.";
+      document.getElementById("keyBox").innerText = keyStr;
+      document.getElementById("validityBox").style.display = "block";
+
+      const btn = document.getElementById("btnCopy");
+      btn.disabled = false;
+      btn.innerText = "📋 COPY ACCESS KEY";
+
+      runCountdown(targetExpiry);
+    }
+
+    // अगर पहले से Key मौजूद है
+    if (activeKey && expiryTime) {
+      if (now >= parseInt(expiryTime, 10)) {
+        // 6 घंटे खत्म हो चुके हैं -> शुरू से स्टेप करने के लिए रीडायरेक्ट
+        resetAndRedirectToStart();
+      } else {
+        // की अभी भी वैलिड है -> रिफ्रेश करने पर भी वही की दिखाओ
+        unlockInterface(activeKey, parseInt(expiryTime, 10));
+      }
+    } else {
+      // पहली बार की जनरेट हो रही है -> 15 सेकंड का वेट
+      let waitSeconds = 15;
+      const waitInterval = setInterval(() => {
+        waitSeconds--;
+        if (waitSeconds > 0) {
+          document.getElementById("statusTitle").innerText = `⚡ GENERATING SECURE KEY (${waitSeconds}s)...`;
+          document.getElementById("btnCopy").innerText = `⏳ WAIT ${waitSeconds}s TO GENERATE KEY`;
+        } else {
+          clearInterval(waitInterval);
+
+          const newKey = generateRandomKey();
+          const targetExpiry = Date.now() + SIX_HOURS_MS;
+
+          // LocalStorage में सेव ताकि रिफ्रेश से न बदले
+          localStorage.setItem("ayan_active_key", newKey);
+          localStorage.setItem("ayan_key_expiry", targetExpiry);
+          activeKey = newKey;
+
+          unlockInterface(newKey, targetExpiry);
+        }
+      }, 1000);
+    }
+
+    /* --- LIVE COUNTDOWN TIMER --- */
+    function runCountdown(expiryTimestamp) {
+      const expireEl = document.getElementById("expireTimer");
+
+      const timerInterval = setInterval(() => {
+        const currentTime = Date.now();
+        const diff = expiryTimestamp - currentTime;
+
+        if (diff <= 0) {
+          clearInterval(timerInterval);
+          resetAndRedirectToStart();
+        } else {
+          const totalSeconds = Math.floor(diff / 1000);
+          const h = String(Math.floor(totalSeconds / 3600)).padStart(2, "0");
+          const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+          const s = String(totalSeconds % 60).padStart(2, "0");
+          expireEl.innerText = `${h}:${m}:${s}`;
+        }
+      }, 1000);
+    }
+
+    /* --- COPY CLIPBOARD FUNCTION --- */
+    function copyKey() {
+      if (!activeKey) return;
+      navigator.clipboard.writeText(activeKey).then(() => {
+        const btn = document.getElementById("btnCopy");
+        btn.innerText = "✔ COPIED TO CLIPBOARD!";
+        btn.style.background = "#2ea043";
+        setTimeout(() => {
+          btn.innerText = "📋 COPY ACCESS KEY";
+          btn.style.background = "#00ff66";
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>
